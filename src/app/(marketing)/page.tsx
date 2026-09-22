@@ -1,42 +1,65 @@
-import Link from "next/link";
 import { InquiryForm } from "@/components/marketing/InquiryForm";
 
 const services = [
   {
-    title: "Websites that work for the business",
-    body: "Clear messaging, fast pages, and forms that turn visitors into leads — built so you can own and update them.",
+    title: "Websites that win customers",
+    body: "Fast, clear sites that turn visitors into leads — and you own every pixel.",
   },
   {
-    title: "Custom apps & workflows",
-    body: "Internal tools, customer portals, and automation that replace spreadsheets and manual follow-up.",
+    title: "Custom apps & automations",
+    body: "Internal tools and customer portals that replace spreadsheets and manual follow-up.",
   },
   {
-    title: "Practical AI integrations",
-    body: "Assistants, document handling, and smart features wired into the tools your team already uses — no science project.",
+    title: "Practical AI, minus the hype",
+    body: "Assistants and smart features wired into the tools your team already uses.",
   },
 ];
 
 const steps = [
   {
     step: "01",
-    title: "Share the problem",
-    body: "Submit a project idea. We’ll clarify goals, constraints, and what “done” looks like.",
+    title: "Tell me the problem",
+    body: "Share what's broken or what you want to launch. We'll agree on what \u201cdone\u201d looks like.",
   },
   {
     step: "02",
-    title: "Build in the open",
-    body: "You get a client space with screenshots and notes as the work moves — not radio silence until launch day.",
+    title: "Watch it take shape",
+    body: "Regular updates with screenshots and notes as the work moves. Never radio silence.",
   },
   {
     step: "03",
-    title: "Ship and stay close",
-    body: "Launch, train your team if needed, and keep a clear path for the next improvement.",
+    title: "Launch and keep improving",
+    body: "Ship it, train your team if needed, and keep a clear path for what's next.",
   },
 ];
+
+const differentiators = [
+  {
+    title: "You talk to the builder",
+    body: "One senior engineer from first call to launch. No account managers, no telephone game.",
+  },
+  {
+    title: "Senior quality, small-business pricing",
+    body: "AI-accelerated development means experienced engineering without the agency markup.",
+  },
+  {
+    title: "You own it all",
+    body: "Your code, your data, your infrastructure. No lock-in, no hostage situations.",
+  },
+];
+
+function Eyebrow({ children }: { children: React.ReactNode }) {
+  return (
+    <p className="font-[family-name:var(--font-syne)] text-sm font-semibold tracking-[0.18em] text-accent uppercase">
+      {children}
+    </p>
+  );
+}
 
 export default function HomePage() {
   return (
     <>
+      {/* HERO */}
       <section className="relative min-h-[100svh] overflow-hidden bg-ink text-white">
         <div
           aria-hidden
@@ -61,99 +84,104 @@ export default function HomePage() {
           }}
         />
 
-        <div className="relative mx-auto flex min-h-[100svh] max-w-6xl flex-col justify-end px-6 pb-20 pt-32 md:justify-center md:px-8 md:pb-24 md:pt-28">
-          <p className="animate-fade-up font-[family-name:var(--font-syne)] text-sm font-semibold tracking-[0.18em] text-accent uppercase">
-            Everyday Tech LLC
-          </p>
+        <div className="relative mx-auto flex min-h-[100svh] max-w-6xl flex-col justify-center px-6 pt-32 pb-24 md:px-8">
+          <div className="animate-fade-up">
+            <Eyebrow>Everyday Tech LLC</Eyebrow>
+          </div>
           <h1 className="animate-fade-up-delay-1 mt-5 max-w-3xl font-[family-name:var(--font-syne)] text-4xl leading-[1.05] font-bold tracking-tight text-balance sm:text-5xl md:text-6xl lg:text-7xl">
             Technology that earns its place in a small business.
           </h1>
           <p className="animate-fade-up-delay-2 mt-6 max-w-xl text-lg leading-relaxed text-white/75 md:text-xl">
-            I build websites, apps, and AI integrations that save time and
-            create clarity — and partner with MSPs when they need custom code
-            their stack doesn’t cover.
+            Custom websites, apps, and AI integrations — built by a senior
+            engineer, priced for small-business budgets.
           </p>
           <div className="animate-fade-up-delay-3 mt-10 flex flex-wrap items-center gap-4">
             <a
               href="#inquire"
-              className="inline-flex items-center justify-center rounded-md bg-accent px-5 py-3 text-sm font-semibold text-white transition hover:bg-accent-deep"
+              className="inline-flex items-center justify-center rounded-md bg-accent px-6 py-3 text-sm font-semibold text-white transition hover:bg-accent-deep"
             >
               Start a project
             </a>
-            <Link
-              href="/login"
-              className="inline-flex items-center justify-center rounded-md border border-white/25 px-5 py-3 text-sm font-medium text-white/90 transition hover:border-white/50 hover:bg-white/5"
+            <a
+              href="#how-it-works"
+              className="inline-flex items-center justify-center rounded-md border border-white/25 px-6 py-3 text-sm font-medium text-white/90 transition hover:border-white/50 hover:bg-white/5"
             >
-              Client login
-            </Link>
+              See how it works
+            </a>
           </div>
         </div>
       </section>
 
+      {/* WHY */}
       <section className="border-b border-line bg-surface px-6 py-20 md:px-8 md:py-28">
-        <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-[0.9fr_1.1fr] md:gap-16">
-          <div>
-            <h2 className="font-[family-name:var(--font-syne)] text-3xl font-semibold tracking-tight text-ink md:text-4xl">
-              Built for owners who need results, not another vendor.
-            </h2>
-          </div>
-          <div className="space-y-6 text-lg leading-relaxed text-muted">
-            <p>
-              Most small businesses don’t need a bloated platform. They need a
-              site that converts, a tool that removes busywork, or an
-              integration that connects the systems they already trust.
-            </p>
-            <p>
-              Everyday Tech is a focused engineering practice: one builder,
-              clear communication, and software that fits how you actually
-              operate.
-            </p>
+        <div className="mx-auto max-w-6xl">
+          <Eyebrow>Why Everyday Tech</Eyebrow>
+          <h2 className="mt-4 max-w-2xl font-[family-name:var(--font-syne)] text-3xl font-semibold tracking-tight text-ink md:text-4xl">
+            No agency bloat. Just software that works.
+          </h2>
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {differentiators.map((item) => (
+              <div
+                key={item.title}
+                className="rounded-2xl border border-line bg-surface-elevated p-7"
+              >
+                <h3 className="font-[family-name:var(--font-syne)] text-lg font-semibold text-ink">
+                  {item.title}
+                </h3>
+                <p className="mt-2 leading-relaxed text-muted">{item.body}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
+      {/* SERVICES */}
       <section
         id="services"
         className="border-b border-line bg-surface-elevated px-6 py-20 md:px-8 md:py-28"
       >
         <div className="mx-auto max-w-6xl">
-          <h2 className="max-w-2xl font-[family-name:var(--font-syne)] text-3xl font-semibold tracking-tight text-ink md:text-4xl">
+          <Eyebrow>Services</Eyebrow>
+          <h2 className="mt-4 max-w-2xl font-[family-name:var(--font-syne)] text-3xl font-semibold tracking-tight text-ink md:text-4xl">
             What I deliver
           </h2>
-          <p className="mt-4 max-w-2xl text-lg text-muted">
-            Outcomes first — shipped code that your customers and team can use
-            this quarter.
-          </p>
-          <ul className="mt-14 grid gap-12 md:grid-cols-3 md:gap-10">
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
             {services.map((service) => (
-              <li key={service.title}>
-                <div className="mb-4 h-1 w-10 bg-accent" aria-hidden />
+              <div
+                key={service.title}
+                className="group rounded-2xl border border-line bg-surface p-7 transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-ink/5"
+              >
+                <div
+                  className="mb-5 h-1 w-10 rounded-full bg-accent transition-all duration-300 group-hover:w-16"
+                  aria-hidden
+                />
                 <h3 className="font-[family-name:var(--font-syne)] text-xl font-semibold text-ink">
                   {service.title}
                 </h3>
                 <p className="mt-3 leading-relaxed text-muted">{service.body}</p>
-              </li>
+              </div>
             ))}
-          </ul>
+          </div>
         </div>
       </section>
 
+      {/* PROCESS */}
       <section
         id="how-it-works"
         className="border-b border-line bg-surface px-6 py-20 md:px-8 md:py-28"
       >
         <div className="mx-auto max-w-6xl">
-          <h2 className="font-[family-name:var(--font-syne)] text-3xl font-semibold tracking-tight text-ink md:text-4xl">
-            How engagement works
+          <Eyebrow>Process</Eyebrow>
+          <h2 className="mt-4 font-[family-name:var(--font-syne)] text-3xl font-semibold tracking-tight text-ink md:text-4xl">
+            From idea to launch, without the mystery
           </h2>
-          <p className="mt-4 max-w-2xl text-lg text-muted">
-            From first idea to a living project portal — so you always know
-            where things stand.
-          </p>
-          <ol className="mt-14 grid gap-10 md:grid-cols-3">
+          <ol className="mt-12 grid gap-6 md:grid-cols-3">
             {steps.map((item) => (
-              <li key={item.step}>
-                <p className="font-[family-name:var(--font-syne)] text-sm font-semibold tracking-[0.16em] text-accent uppercase">
+              <li
+                key={item.step}
+                className="rounded-2xl border border-line bg-surface-elevated p-7"
+              >
+                <p className="font-[family-name:var(--font-syne)] text-sm font-bold tracking-[0.16em] text-accent">
                   {item.step}
                 </p>
                 <h3 className="mt-3 font-[family-name:var(--font-syne)] text-xl font-semibold text-ink">
@@ -166,40 +194,42 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* MSP */}
       <section
         id="partners"
         className="border-b border-line bg-ink px-6 py-20 text-white md:px-8 md:py-28"
       >
-        <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-[1fr_1fr] md:items-center md:gap-16">
-          <div>
-            <h2 className="font-[family-name:var(--font-syne)] text-3xl font-semibold tracking-tight md:text-4xl">
-              Partnering with MSPs
-            </h2>
-            <p className="mt-5 text-lg leading-relaxed text-white/70">
-              When a client needs custom development outside your standard
-              stack, I plug in as engineering support — scoped builds,
-              integrations, and one-off tools without adding headcount.
-            </p>
-          </div>
-          <p className="text-lg leading-relaxed text-white/70 md:border-l md:border-white/15 md:pl-12">
-            Keep the customer relationship. I’ll handle the custom coding,
-            document what shipped, and hand off cleanly when the work is done.
+        <div className="mx-auto max-w-6xl">
+          <p className="font-[family-name:var(--font-syne)] text-sm font-semibold tracking-[0.18em] text-accent uppercase">
+            For MSPs
+          </p>
+          <h2 className="mt-4 max-w-2xl font-[family-name:var(--font-syne)] text-3xl font-semibold tracking-tight md:text-4xl">
+            Custom code without the headcount
+          </h2>
+          <p className="mt-5 max-w-3xl text-lg leading-relaxed text-white/70">
+            When a client needs development outside your stack, I plug in as
+            engineering support — scoped builds and clean integrations,
+            documented and handed off. You keep the relationship; I handle
+            the code.
           </p>
         </div>
       </section>
 
+      {/* INQUIRE */}
       <section
         id="inquire"
         className="bg-surface-elevated px-6 py-20 md:px-8 md:py-28"
       >
         <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-[0.85fr_1.15fr] md:gap-16">
           <div>
-            <h2 className="font-[family-name:var(--font-syne)] text-3xl font-semibold tracking-tight text-ink md:text-4xl">
-              Start with a project idea
+            <Eyebrow>Get started</Eyebrow>
+            <h2 className="mt-4 font-[family-name:var(--font-syne)] text-3xl font-semibold tracking-tight text-ink md:text-4xl">
+              Tell me what you&apos;re building
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-muted">
-              Tell me what you’re trying to fix or launch. I’ll review it and
-              reply with next steps — usually within a couple of business days.
+              Describe the problem you&apos;re trying to solve. I&apos;ll
+              reply with honest next steps — usually within a couple of
+              business days.
             </p>
           </div>
           <InquiryForm />

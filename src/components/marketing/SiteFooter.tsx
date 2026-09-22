@@ -7,8 +7,7 @@ export function SiteFooter() {
         <div className="space-y-3">
           <Logo inverted />
           <p className="max-w-sm text-sm leading-relaxed text-white/65">
-            Websites, apps, and AI integrations for small businesses — plus
-            custom development for managed service providers.
+            Websites, mobile apps, and AI helpers for small businesses.
           </p>
         </div>
         <div className="text-sm text-white/55">

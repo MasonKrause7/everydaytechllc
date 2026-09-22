@@ -12,7 +12,7 @@ export default function LoginPage() {
         <Logo />
       </div>
       <div className="mx-auto flex w-full max-w-md flex-1 flex-col justify-center px-6 pb-16">
-        <h1 className="font-[family-name:var(--font-syne)] text-3xl font-semibold tracking-tight text-ink">
+        <h1 className="font-[family-name:var(--font-display)] text-3xl font-semibold tracking-tight text-ink">
           Client login
         </h1>
         <p className="mt-3 leading-relaxed text-muted">

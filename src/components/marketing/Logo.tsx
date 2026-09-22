@@ -27,7 +27,7 @@ export function Logo({
       />
       {showWordmark ? (
         <span
-          className={`font-[family-name:var(--font-syne)] text-lg font-semibold tracking-tight ${
+          className={`font-[family-name:var(--font-display)] text-lg font-semibold tracking-tight ${
             inverted ? "text-white" : "text-ink"
           }`}
         >

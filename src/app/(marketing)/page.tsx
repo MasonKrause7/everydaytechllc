@@ -3,15 +3,15 @@ import { InquiryForm } from "@/components/marketing/InquiryForm";
 const services = [
   {
     title: "Websites that win customers",
-    body: "Fast, clear sites that turn visitors into leads — and you own every pixel.",
+    body: "Clear, fast websites that turn visitors into customers — and you own every pixel.",
   },
   {
-    title: "Custom apps & automations",
-    body: "Internal tools and customer portals that replace spreadsheets and manual follow-up.",
+    title: "Mobile Apps (iOS & Android)",
+    body: "Custom apps for iPhones and Android phones — for your customers, your team, or both.",
   },
   {
-    title: "Practical AI, minus the hype",
-    body: "Assistants and smart features wired into the tools your team already uses.",
+    title: "Smart AI helpers",
+    body: "Tools that answer questions, handle paperwork, and cut busywork — built into the apps you already use.",
   },
 ];
 
@@ -36,21 +36,21 @@ const steps = [
 const differentiators = [
   {
     title: "You talk to the builder",
-    body: "One senior engineer from first call to launch. No account managers, no telephone game.",
+    body: "You work directly with me, from first call to launch. No middlemen, no miscommunication.",
   },
   {
     title: "Senior quality, small-business pricing",
-    body: "AI-accelerated development means experienced engineering without the agency markup.",
+    body: "I use AI tools to build faster, so you get senior-level work without the agency price tag.",
   },
   {
     title: "You own it all",
-    body: "Your code, your data, your infrastructure. No lock-in, no hostage situations.",
+    body: "Everything I build is yours — your website, your app, your data. You're never stuck with me.",
   },
 ];
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
-    <p className="font-[family-name:var(--font-syne)] text-sm font-semibold tracking-[0.18em] text-accent uppercase">
+    <p className="font-[family-name:var(--font-display)] text-sm font-semibold tracking-[0.18em] text-accent uppercase">
       {children}
     </p>
   );
@@ -88,12 +88,12 @@ export default function HomePage() {
           <div className="animate-fade-up">
             <Eyebrow>Everyday Tech LLC</Eyebrow>
           </div>
-          <h1 className="animate-fade-up-delay-1 mt-5 max-w-3xl font-[family-name:var(--font-syne)] text-4xl leading-[1.05] font-bold tracking-tight text-balance sm:text-5xl md:text-6xl lg:text-7xl">
+          <h1 className="animate-fade-up-delay-1 mt-5 max-w-3xl font-[family-name:var(--font-display)] text-4xl leading-[1.05] font-bold tracking-tight text-balance sm:text-5xl md:text-6xl lg:text-7xl">
             Technology that earns its place in a small business.
           </h1>
           <p className="animate-fade-up-delay-2 mt-6 max-w-xl text-lg leading-relaxed text-white/75 md:text-xl">
-            Custom websites, apps, and AI integrations — built by a senior
-            engineer, priced for small-business budgets.
+            Websites, mobile apps, and AI helpers for your business — built
+            by a senior engineer, priced for small-business budgets.
           </p>
           <div className="animate-fade-up-delay-3 mt-10 flex flex-wrap items-center gap-4">
             <a
@@ -116,7 +116,7 @@ export default function HomePage() {
       <section className="border-b border-line bg-surface px-6 py-20 md:px-8 md:py-28">
         <div className="mx-auto max-w-6xl">
           <Eyebrow>Why Everyday Tech</Eyebrow>
-          <h2 className="mt-4 max-w-2xl font-[family-name:var(--font-syne)] text-3xl font-semibold tracking-tight text-ink md:text-4xl">
+          <h2 className="mt-4 max-w-2xl font-[family-name:var(--font-display)] text-3xl font-semibold tracking-tight text-ink md:text-4xl">
             No agency bloat. Just software that works.
           </h2>
           <div className="mt-12 grid gap-6 md:grid-cols-3">
@@ -125,7 +125,7 @@ export default function HomePage() {
                 key={item.title}
                 className="rounded-2xl border border-line bg-surface-elevated p-7"
               >
-                <h3 className="font-[family-name:var(--font-syne)] text-lg font-semibold text-ink">
+                <h3 className="font-[family-name:var(--font-display)] text-lg font-semibold text-ink">
                   {item.title}
                 </h3>
                 <p className="mt-2 leading-relaxed text-muted">{item.body}</p>
@@ -142,7 +142,7 @@ export default function HomePage() {
       >
         <div className="mx-auto max-w-6xl">
           <Eyebrow>Services</Eyebrow>
-          <h2 className="mt-4 max-w-2xl font-[family-name:var(--font-syne)] text-3xl font-semibold tracking-tight text-ink md:text-4xl">
+          <h2 className="mt-4 max-w-2xl font-[family-name:var(--font-display)] text-3xl font-semibold tracking-tight text-ink md:text-4xl">
             What I deliver
           </h2>
           <div className="mt-12 grid gap-6 md:grid-cols-3">
@@ -155,7 +155,7 @@ export default function HomePage() {
                   className="mb-5 h-1 w-10 rounded-full bg-accent transition-all duration-300 group-hover:w-16"
                   aria-hidden
                 />
-                <h3 className="font-[family-name:var(--font-syne)] text-xl font-semibold text-ink">
+                <h3 className="font-[family-name:var(--font-display)] text-xl font-semibold text-ink">
                   {service.title}
                 </h3>
                 <p className="mt-3 leading-relaxed text-muted">{service.body}</p>
@@ -172,7 +172,7 @@ export default function HomePage() {
       >
         <div className="mx-auto max-w-6xl">
           <Eyebrow>Process</Eyebrow>
-          <h2 className="mt-4 font-[family-name:var(--font-syne)] text-3xl font-semibold tracking-tight text-ink md:text-4xl">
+          <h2 className="mt-4 font-[family-name:var(--font-display)] text-3xl font-semibold tracking-tight text-ink md:text-4xl">
             From idea to launch, without the mystery
           </h2>
           <ol className="mt-12 grid gap-6 md:grid-cols-3">
@@ -181,37 +181,16 @@ export default function HomePage() {
                 key={item.step}
                 className="rounded-2xl border border-line bg-surface-elevated p-7"
               >
-                <p className="font-[family-name:var(--font-syne)] text-sm font-bold tracking-[0.16em] text-accent">
+                <p className="font-[family-name:var(--font-display)] text-sm font-bold tracking-[0.16em] text-accent">
                   {item.step}
                 </p>
-                <h3 className="mt-3 font-[family-name:var(--font-syne)] text-xl font-semibold text-ink">
+                <h3 className="mt-3 font-[family-name:var(--font-display)] text-xl font-semibold text-ink">
                   {item.title}
                 </h3>
                 <p className="mt-3 leading-relaxed text-muted">{item.body}</p>
               </li>
             ))}
           </ol>
-        </div>
-      </section>
-
-      {/* MSP */}
-      <section
-        id="partners"
-        className="border-b border-line bg-ink px-6 py-20 text-white md:px-8 md:py-28"
-      >
-        <div className="mx-auto max-w-6xl">
-          <p className="font-[family-name:var(--font-syne)] text-sm font-semibold tracking-[0.18em] text-accent uppercase">
-            For MSPs
-          </p>
-          <h2 className="mt-4 max-w-2xl font-[family-name:var(--font-syne)] text-3xl font-semibold tracking-tight md:text-4xl">
-            Custom code without the headcount
-          </h2>
-          <p className="mt-5 max-w-3xl text-lg leading-relaxed text-white/70">
-            When a client needs development outside your stack, I plug in as
-            engineering support — scoped builds and clean integrations,
-            documented and handed off. You keep the relationship; I handle
-            the code.
-          </p>
         </div>
       </section>
 
@@ -223,7 +202,7 @@ export default function HomePage() {
         <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-[0.85fr_1.15fr] md:gap-16">
           <div>
             <Eyebrow>Get started</Eyebrow>
-            <h2 className="mt-4 font-[family-name:var(--font-syne)] text-3xl font-semibold tracking-tight text-ink md:text-4xl">
+            <h2 className="mt-4 font-[family-name:var(--font-display)] text-3xl font-semibold tracking-tight text-ink md:text-4xl">
               Tell me what you&apos;re building
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-muted">

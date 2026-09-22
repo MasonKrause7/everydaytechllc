@@ -4,7 +4,6 @@ import { Logo } from "./Logo";
 const links = [
   { href: "#services", label: "Services" },
   { href: "#how-it-works", label: "How it works" },
-  { href: "#partners", label: "MSP partners" },
   { href: "#inquire", label: "Start a project" },
 ];
 

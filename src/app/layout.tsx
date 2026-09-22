@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Manrope, Syne } from "next/font/google";
+import { Manrope, Sora } from "next/font/google";
 import "./globals.css";
 
-const syne = Syne({
-  variable: "--font-syne",
+const displayFont = Sora({
+  variable: "--font-display",
   subsets: ["latin"],
   weight: ["500", "600", "700", "800"],
 });
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     template: "%s · Everyday Tech LLC",
   },
   description:
-    "Websites, apps, and AI integrations for small businesses — plus custom development for managed service providers.",
+    "Websites, mobile apps, and AI helpers for small businesses.",
 };
 
 export default function RootLayout({
@@ -31,7 +31,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${syne.variable} ${manrope.variable} h-full antialiased`}
+      className={`${displayFont.variable} ${manrope.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col font-sans">{children}</body>
     </html>

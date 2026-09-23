@@ -45,8 +45,9 @@ export function InquiryForm() {
               Select one
             </option>
             <option value="website">Website</option>
-            <option value="app">Mobile app</option>
-            <option value="ai">AI helper</option>
+            <option value="mobile-app">Mobile app</option>
+            <option value="desktop-app">Desktop app</option>
+            <option value="ai">AI integration</option>
             <option value="other">Something else</option>
           </select>
         </div>

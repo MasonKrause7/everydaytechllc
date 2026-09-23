@@ -1,17 +1,104 @@
+import type { ComponentType } from "react";
 import { InquiryForm } from "@/components/marketing/InquiryForm";
 
-const services = [
+function GlobeIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6" aria-hidden>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M3 12h18" />
+      <path d="M12 3c2.5 2.6 3.9 5.7 3.9 9s-1.4 6.4-3.9 9c-2.5-2.6-3.9-5.7-3.9-9S9.5 5.6 12 3z" />
+    </svg>
+  );
+}
+
+function PhoneIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6" aria-hidden>
+      <rect x="7" y="2.5" width="10" height="19" rx="2.5" />
+      <path d="M11 18.5h2" />
+    </svg>
+  );
+}
+
+function MonitorIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6" aria-hidden>
+      <rect x="3" y="4" width="18" height="12" rx="2" />
+      <path d="M9 20h6" />
+      <path d="M12 16v4" />
+    </svg>
+  );
+}
+
+function SparklesIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6" aria-hidden>
+      <path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z" />
+      <path d="M18.5 15.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8.8-2.2z" />
+    </svg>
+  );
+}
+
+type Service = {
+  title: string;
+  icon: ComponentType;
+  tagline: string;
+  includes: string[];
+  value: string;
+};
+
+const services: Service[] = [
   {
-    title: "Websites that win customers",
-    body: "Clear, fast websites that turn visitors into customers — and you own every pixel.",
+    title: "Websites",
+    icon: GlobeIcon,
+    tagline: "A website that brings you customers — not just one that looks nice.",
+    includes: [
+      "Design built around your business, not a template",
+      "Works great on phones, tablets, and computers",
+      "Set up to show up on Google",
+      "Contact forms, maps, and online booking",
+    ],
+    value:
+      "Most customers look you up online before they ever call. A clear, fast website turns those lookers into paying customers.",
   },
   {
-    title: "Mobile Apps (iOS & Android)",
-    body: "Custom apps for iPhones and Android phones — for your customers, your team, or both.",
+    title: "Mobile apps",
+    icon: PhoneIcon,
+    tagline: "Your business, right in your customers' pockets.",
+    includes: [
+      "One app for both iPhone and Android",
+      "Ordering, booking, or loyalty for customers",
+      "Tools for your team out in the field",
+      "App store setup handled for you",
+    ],
+    value:
+      "An app keeps you one tap away — easier reorders, faster booking, and customers who come back more often.",
   },
   {
-    title: "Smart AI helpers",
-    body: "Tools that answer questions, handle paperwork, and cut busywork — built into the apps you already use.",
+    title: "Desktop apps",
+    icon: MonitorIcon,
+    tagline: "Real software for the computers in your office.",
+    includes: [
+      "Built for Windows and Mac",
+      "Quoting, scheduling, inventory, and more",
+      "Fast and reliable on your own machines",
+      "Works with your printers and other equipment",
+    ],
+    value:
+      "For work that happens at a desk or a counter, a dedicated app beats juggling spreadsheets and browser tabs — faster, with fewer mistakes.",
+  },
+  {
+    title: "AI integrations",
+    icon: SparklesIcon,
+    tagline: "Put AI to work on the repetitive stuff.",
+    includes: [
+      "Chat helpers that answer common customer questions",
+      "Drafting quotes, emails, and paperwork",
+      "Connected to the tools you already use",
+      "Set up so your team can actually use it",
+    ],
+    value:
+      "AI is great at busywork — answering FAQs, summarizing, drafting. That frees you and your team up for the work that actually needs a human.",
   },
 ];
 
@@ -92,7 +179,7 @@ export default function HomePage() {
             Technology that earns its place in a small business.
           </h1>
           <p className="animate-fade-up-delay-2 mt-6 max-w-xl text-lg leading-relaxed text-white/75 md:text-xl">
-            Websites, mobile apps, and AI helpers for your business — built
+            Websites, mobile and desktop apps, and AI tools for your business — built
             by a senior engineer, priced for small-business budgets.
           </p>
           <div className="animate-fade-up-delay-3 mt-10 flex flex-wrap items-center gap-4">
@@ -145,20 +232,41 @@ export default function HomePage() {
           <h2 className="mt-4 max-w-2xl font-[family-name:var(--font-display)] text-3xl font-semibold tracking-tight text-ink md:text-4xl">
             What I deliver
           </h2>
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
+          <div className="mt-12 grid gap-6 md:grid-cols-2">
             {services.map((service) => (
               <div
                 key={service.title}
-                className="group rounded-2xl border border-line bg-surface p-7 transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-ink/5"
+                className="group rounded-2xl border border-line bg-surface p-7 transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-ink/5 md:p-8"
               >
-                <div
-                  className="mb-5 h-1 w-10 rounded-full bg-accent transition-all duration-300 group-hover:w-16"
-                  aria-hidden
-                />
-                <h3 className="font-[family-name:var(--font-display)] text-xl font-semibold text-ink">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10 text-accent">
+                  <service.icon />
+                </div>
+                <h3 className="mt-5 font-[family-name:var(--font-display)] text-xl font-semibold text-ink">
                   {service.title}
                 </h3>
-                <p className="mt-3 leading-relaxed text-muted">{service.body}</p>
+                <p className="mt-2 font-medium text-ink">{service.tagline}</p>
+                <p className="mt-6 text-xs font-semibold tracking-[0.14em] text-muted uppercase">
+                  What&apos;s included
+                </p>
+                <ul className="mt-3 space-y-2">
+                  {service.includes.map((item) => (
+                    <li key={item} className="flex gap-3 leading-relaxed text-muted">
+                      <span
+                        aria-hidden
+                        className="mt-[9px] h-1.5 w-1.5 shrink-0 rounded-full bg-accent"
+                      />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-6 border-t border-line pt-5">
+                  <p className="text-xs font-semibold tracking-[0.14em] text-muted uppercase">
+                    Why it matters
+                  </p>
+                  <p className="mt-2 leading-relaxed text-ink/80">
+                    {service.value}
+                  </p>
+                </div>
               </div>
             ))}
           </div>

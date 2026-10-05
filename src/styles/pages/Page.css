@@ -1,0 +1,33 @@
+.page {
+  min-height: calc(100vh - var(--nav-height));
+  padding: 80px 24px;
+}
+
+.page__inner {
+  max-width: var(--content-width);
+  margin: 0 auto;
+}
+
+.page__eyebrow {
+  margin: 0 0 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-brand);
+}
+
+.page__title {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.15;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.page__intro {
+  max-width: 620px;
+  margin: 20px 0 0;
+  font-size: 1.1rem;
+  color: var(--color-text-muted);
+}

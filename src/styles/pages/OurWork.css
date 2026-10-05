@@ -1,0 +1,111 @@
+.work-header {
+  min-height: auto;
+}
+
+.project {
+  padding: 96px 24px;
+  border-top: 1px solid var(--color-border);
+}
+
+.project--reverse {
+  background-color: var(--color-surface);
+}
+
+.project__inner {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 64px;
+  align-items: center;
+  max-width: var(--content-width);
+  margin: 0 auto;
+}
+
+.project--reverse .project__inner {
+  grid-template-columns: 2fr 3fr;
+}
+
+.project--reverse .project__media {
+  order: 2;
+}
+
+.project__placeholder {
+  width: 100%;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 16 / 9;
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  background-color: var(--color-bg);
+  border-style: dashed;
+}
+
+.project__category {
+  margin: 0 0 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-brand);
+}
+
+.project__title {
+  margin: 0;
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.project__description {
+  margin: 16px 0 0;
+  font-size: 1.05rem;
+  color: var(--color-text-muted);
+}
+
+.project__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.project__tag {
+  padding: 4px 12px;
+  font-size: 0.85rem;
+  color: var(--color-brand);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+}
+
+.project__link {
+  display: inline-block;
+  margin-top: 28px;
+  font-weight: 600;
+  color: var(--color-brand);
+}
+
+.project__link:hover {
+  color: var(--color-brand-dim);
+}
+
+@media (max-width: 860px) {
+  .project {
+    padding: 72px 24px;
+  }
+
+  .project__inner,
+  .project--reverse .project__inner {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .project--reverse .project__media {
+    order: 0;
+  }
+}

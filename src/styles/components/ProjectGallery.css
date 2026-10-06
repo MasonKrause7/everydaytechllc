@@ -7,10 +7,12 @@
 .gallery__featured {
   margin: 0;
   overflow: hidden;
-  background-color: var(--color-primary);
-  border: 1px solid var(--color-border);
-  border-radius: 10px;
-  box-shadow: var(--shadow);
+  background:
+    linear-gradient(var(--color-primary), var(--color-primary)) padding-box,
+    linear-gradient(135deg, rgba(59, 107, 255, 0.6), rgba(126, 59, 255, 0.6)) border-box;
+  border: 1.5px solid transparent;
+  border-radius: 14px;
+  box-shadow: 0 24px 48px rgba(10, 15, 31, 0.18);
 }
 
 .gallery__image {
@@ -50,12 +52,13 @@
   overflow: hidden;
   background-color: var(--color-primary);
   border: 2px solid transparent;
-  border-radius: 8px;
+  border-radius: 10px;
   opacity: 0.55;
   cursor: pointer;
   transition:
     opacity 0.15s ease,
-    border-color 0.15s ease;
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
 .gallery__thumb img {
@@ -78,7 +81,7 @@
   padding-left: 3px;
   font-size: 0.8rem;
   color: var(--color-surface);
-  background-color: var(--color-secondary);
+  background: linear-gradient(135deg, var(--color-secondary), var(--color-accent));
   border-radius: 50%;
   box-shadow: 0 4px 12px rgba(10, 15, 31, 0.4);
   transform: translate(-50%, -50%);
@@ -86,11 +89,15 @@
 
 .gallery__thumb:hover {
   opacity: 0.85;
+  transform: translateY(-2px);
 }
 
 .gallery__thumb--active {
+  background:
+    linear-gradient(var(--color-primary), var(--color-primary)) padding-box,
+    linear-gradient(135deg, var(--color-secondary), var(--color-accent)) border-box;
   opacity: 1;
-  border-color: var(--color-secondary);
+  box-shadow: 0 8px 20px rgba(126, 59, 255, 0.3);
 }
 
 @keyframes gallery-fade {
@@ -102,5 +109,13 @@
 @media (prefers-reduced-motion: reduce) {
   .gallery__image {
     animation: none;
+  }
+
+  .gallery__thumb {
+    transition: none;
+  }
+
+  .gallery__thumb:hover {
+    transform: none;
   }
 }

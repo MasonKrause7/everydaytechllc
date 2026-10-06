@@ -1,7 +1,10 @@
 import { Link } from 'react-router'
 import {
+  FaArrowRight,
   FaChartLine,
+  FaCloudArrowUp,
   FaGlobe,
+  FaLightbulb,
   FaMobileScreenButton,
   FaPlus,
   FaWandMagicSparkles,
@@ -63,6 +66,14 @@ function Home() {
                 </p>
               </div>
               <div className="home_content__card">
+                <span className="home_content__icon"><FaCloudArrowUp /></span>
+                <h3 className="home_content__card-title">Cloud migrations</h3>
+                <p className="home_content__card-text">
+                  Still managing your business through spreadsheets, Google Docs, or paper? We migrate your data to a secure cloud database so it's organized and ready to use.
+                  Have a server or existing system but aren't sure where your data lives? We'll help you take control of it and build a dashboard around it.
+                </p>
+              </div>
+              <div className="home_content__card">
                 <span className="home_content__icon"><FaChartLine /></span>
                 <h3 className="home_content__card-title">Data analytics</h3>
                   <p className="home_content__card-text">
@@ -83,6 +94,24 @@ function Home() {
                   We also offer services such as search engine optimization to help your business perform better in search engine rankings like Google. 
                   If you have any tech need, reach out for a free consultation and we will help get you started.
                 </p>
+              </div>
+            </div>
+            <div className="home_content__idea">
+              <span className="home_content__icon"><FaLightbulb /></span>
+              <div>
+                <h3 className="home_content__card-title">Not a business? Bring us your app idea.</h3>
+                <p className="home_content__card-text">
+                  You don't need a business to work with us. If you have a great idea for an app, pitch it to us and we'll talk through what it takes to build it.
+                  We discuss ownership options up front, so everyone is compensated fairly for both the idea and the work to bring it to life.
+                </p>
+              </div>
+              <div className="home_content__idea-actions">
+                <Link to="/start-project" className="hero__button hero__button--primary">
+                  Pitch your idea
+                </Link>
+                <Link to="/services#app-ideas" className="home_content__idea-link">
+                  How it works <FaArrowRight aria-hidden />
+                </Link>
               </div>
             </div>
           </div>

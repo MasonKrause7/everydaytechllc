@@ -15,14 +15,18 @@ const columns = [
   {
     title: 'Services',
     links: [
-      { to: '/services', label: 'Websites' },
-      { to: '/services', label: 'Mobile apps' },
-      { to: '/services', label: 'AI integrations' },
+      { to: '/services#websites', label: 'Websites' },
+      { to: '/services#mobile-apps', label: 'Mobile apps' },
+      { to: '/services#cloud-migrations', label: 'Cloud migrations' },
+      { to: '/services#data-analytics', label: 'Data analytics' },
+      { to: '/services#ai-integrations', label: 'AI integrations' },
+      { to: '/services#app-ideas', label: 'App ideas' },
     ],
   },
   {
     title: 'Company',
     links: [
+      { to: '/pricing', label: 'Pricing' },
       { to: '/our-work', label: 'Our work' },
       { to: '/about', label: 'About' },
       { to: '/contact', label: 'Contact' },

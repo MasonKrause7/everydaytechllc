@@ -2,13 +2,35 @@
   min-height: auto;
 }
 
-.project {
-  padding: 96px 24px;
-  border-top: 1px solid var(--color-border);
+.work-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 36px;
 }
 
-.project--reverse {
+.work-nav__link {
+  padding: 8px 16px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-secondary);
   background-color: var(--color-surface);
+  border: 1px solid rgba(59, 107, 255, 0.25);
+  border-radius: 999px;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.work-nav__link:hover {
+  color: var(--color-accent);
+  border-color: rgba(126, 59, 255, 0.5);
+  box-shadow: 0 6px 18px rgba(126, 59, 255, 0.15);
+}
+
+.project {
+  scroll-margin-top: var(--nav-height);
 }
 
 .project__inner {
@@ -16,8 +38,6 @@
   grid-template-columns: 3fr 2fr;
   gap: 64px;
   align-items: center;
-  max-width: var(--content-width);
-  margin: 0 auto;
 }
 
 .project--reverse .project__inner {
@@ -26,6 +46,25 @@
 
 .project--reverse .project__media {
   order: 2;
+}
+
+.project__media {
+  position: relative;
+}
+
+.project__media::before {
+  content: '';
+  position: absolute;
+  inset: 10% 6%;
+  background: linear-gradient(135deg, var(--color-secondary), var(--color-accent));
+  border-radius: 24px;
+  opacity: 0.22;
+  filter: blur(48px);
+  pointer-events: none;
+}
+
+.project__media > * {
+  position: relative;
 }
 
 .project__placeholder {
@@ -41,23 +80,6 @@
   color: var(--color-text-muted);
   background-color: var(--color-neutral);
   border-style: dashed;
-}
-
-.project__category {
-  margin: 0 0 12px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--color-accent);
-}
-
-.project__title {
-  margin: 0;
-  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-  line-height: 1.2;
-  font-weight: 700;
-  letter-spacing: -0.02em;
 }
 
 .project__description {
@@ -78,8 +100,9 @@
 .project__tag {
   padding: 4px 12px;
   font-size: 0.85rem;
+  font-weight: 600;
   color: var(--color-secondary);
-  background-color: rgba(59, 107, 255, 0.08);
+  background: linear-gradient(135deg, rgba(59, 107, 255, 0.08), rgba(126, 59, 255, 0.08));
   border: 1px solid rgba(59, 107, 255, 0.2);
   border-radius: 999px;
 }
@@ -95,11 +118,13 @@
   color: var(--color-accent);
 }
 
-@media (max-width: 860px) {
-  .project {
-    padding: 72px 24px;
+@media (prefers-reduced-motion: reduce) {
+  .work-nav__link {
+    transition: none;
   }
+}
 
+@media (max-width: 860px) {
   .project__inner,
   .project--reverse .project__inner {
     grid-template-columns: 1fr;

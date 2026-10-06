@@ -17,11 +17,14 @@ import sctCourses from '../assets/my-work/sct/sct-courses-screen.png'
 import sctSignIn from '../assets/my-work/sct/sct-signup-login-screen.png'
 import sctDemo from '../assets/my-work/sct/sct-demo-vid.mp4'
 import sctDemoPoster from '../assets/my-work/sct/sct-demo-vid-poster.jpg'
+import { Link } from 'react-router'
 import ProjectGallery, { type Media } from '../components/ProjectGallery'
 import '../styles/pages/Page.css'
+import '../styles/pages/Home.css'
 import '../styles/pages/OurWork.css'
 
 type Project = {
+  id: string
   title: string
   category: string
   description: string
@@ -32,6 +35,7 @@ type Project = {
 
 const projects: Project[] = [
   {
+    id: 'sct-training',
     title: 'SCT Training',
     category: 'Full Tech Suite',
     description:
@@ -50,6 +54,7 @@ const projects: Project[] = [
     ],
   },
   {
+    id: 'axis',
     title: 'Axis',
     category: 'Mobile App',
     description:
@@ -60,6 +65,7 @@ const projects: Project[] = [
     ],
   },
   {
+    id: 'busy-bee',
     title: 'Busy Bee',
     category: 'Web App',
     description:
@@ -73,6 +79,7 @@ const projects: Project[] = [
     ],
   },
   {
+    id: 'giggle-tales',
     title: 'Giggle Tales',
     category: 'Web App',
     description:
@@ -86,6 +93,7 @@ const projects: Project[] = [
     ],
   },
   {
+    id: 'queue-less',
     title: 'Queue-less',
     category: 'Web App',
     description:
@@ -106,20 +114,30 @@ function OurWork() {
       <section className="page work-header">
         <div className="page__inner">
           <p className="page__eyebrow">Our work</p>
-          <h1 className="page__title">Projects we've built</h1>
+          <h1 className="page__title">
+            Projects we've <span className="home_content__highlight">built</span>
+          </h1>
           <p className="page__intro">
             A selection of websites, apps, and integrations we've delivered for our
             clients.
           </p>
+          <nav className="work-nav" aria-label="Projects">
+            {projects.map(({ id, title }) => (
+              <Link key={id} to={`#${id}`} className="work-nav__link">
+                {title}
+              </Link>
+            ))}
+          </nav>
         </div>
       </section>
 
       {projects.map((project, index) => (
         <section
-          key={project.title}
-          className={`project${index % 2 === 1 ? ' project--reverse' : ''}`}
+          key={project.id}
+          id={project.id}
+          className={`home_content__section project${index % 2 === 0 ? ' home_content__section--alt' : ' project--reverse'}`}
         >
-          <div className="project__inner">
+          <div className="home_content__inner project__inner">
             <div className="project__media">
               {project.images.length > 0 ? (
                 <ProjectGallery images={project.images} />
@@ -129,8 +147,8 @@ function OurWork() {
             </div>
 
             <div className="project__content">
-              <p className="project__category">{project.category}</p>
-              <h2 className="project__title">{project.title}</h2>
+              <p className="home_content__eyebrow">{project.category}</p>
+              <h2 className="home_content__title">{project.title}</h2>
               <p className="project__description">{project.description}</p>
               <ul className="project__tags">
                 {project.tags.map((tag, tagIndex) => (
@@ -153,6 +171,21 @@ function OurWork() {
           </div>
         </section>
       ))}
+
+      <section className="home_content__section home_content__section--cta">
+        <div className="home_content__inner home_content__cta">
+          <h2 className="home_content__title">
+            Have a project in <span className="home_content__highlight">mind</span>?
+          </h2>
+          <p className="home_content__intro">
+            Book a free consultation and we'll talk through your goals and recommend the right
+            solution for your budget.
+          </p>
+          <Link to="/start-project" className="hero__button hero__button--primary">
+            Start a project
+          </Link>
+        </div>
+      </section>
     </>
   )
 }

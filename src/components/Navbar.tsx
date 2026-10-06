@@ -5,6 +5,7 @@ import '../styles/components/Navbar.css'
 
 const links = [
   { to: '/services', label: 'Services' },
+  { to: '/pricing', label: 'Pricing' },
   { to: '/our-work', label: 'Our Work' },
   { to: '/about', label: 'About' },
   { to: '/contact', label: 'Contact' },

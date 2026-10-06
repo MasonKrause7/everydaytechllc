@@ -1,7 +1,9 @@
 .footer {
   padding: 0 24px;
-  background-color: var(--color-surface);
-  border-top: 1px solid var(--color-border);
+  background:
+    linear-gradient(90deg, transparent, rgba(59, 107, 255, 0.4), rgba(126, 59, 255, 0.4), transparent)
+      top / 100% 1px no-repeat,
+    var(--color-surface);
 }
 
 .footer__inner {

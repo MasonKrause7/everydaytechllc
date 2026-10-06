@@ -1,4 +1,11 @@
 import { Link } from 'react-router'
+import {
+  FaChartLine,
+  FaGlobe,
+  FaMobileScreenButton,
+  FaPlus,
+  FaWandMagicSparkles,
+} from 'react-icons/fa6'
 import '../styles/pages/Home.css'
 
 function Home() {
@@ -28,7 +35,9 @@ function Home() {
         <div className="home_content__section">
           <div className="home_content__inner">
             <p className="home_content__eyebrow">What we do</p>
-            <h2 className="home_content__title">Affordable custom solutions</h2>
+            <h2 className="home_content__title">
+              Affordable <span className="home_content__highlight">custom solutions</span>
+            </h2>
             <p className="home_content__intro">
               Traditional custom software took a team to build and cost too much for the average small business.
               We eliminate that barrier by offering tailored solutions that fit your needs, and your budget. 
@@ -37,6 +46,7 @@ function Home() {
             </p>
             <div className="home_content__grid">
               <div className="home_content__card">
+                <span className="home_content__icon"><FaGlobe /></span>
                 <h3 className="home_content__card-title">Websites</h3>
                 <p className="home_content__card-text">
                   A strong website helps new customers find your business, leaves a lasting first impression, and builds trust in your brand.
@@ -44,6 +54,7 @@ function Home() {
                 </p>
               </div>
               <div className="home_content__card">
+                <span className="home_content__icon"><FaMobileScreenButton /></span>
                 <h3 className="home_content__card-title">Mobile apps</h3>
                 <p className="home_content__card-text">
                   Mobile apps are a great way to keep your brand top of mind. 
@@ -52,18 +63,21 @@ function Home() {
                 </p>
               </div>
               <div className="home_content__card">
+                <span className="home_content__icon"><FaChartLine /></span>
                 <h3 className="home_content__card-title">Data analytics</h3>
                   <p className="home_content__card-text">
                     Whether you have an existing tech suite or we build you a new one, we believe in making data backed decisions. We build analytics into every product and track data closely to optimize the customer experience and improve your conversion rates over time.
                   </p>
               </div>
               <div className="home_content__card">
+                <span className="home_content__icon"><FaWandMagicSparkles /></span>
                 <h3 className="home_content__card-title">AI integrations</h3>
                 <p className="home_content__card-text">
                   Our founding engineer built the first AI integrated features for Amazon's Ads department, and has extensive experience integrating AI agents into services for big corporate. Instead of making more profit for large corporations, we want to empower small businesses through those same capabilities. Let's chat and see if an AI automation could benefit your business.
                 </p>
               </div>
               <div className="home_content__card">
+                <span className="home_content__icon"><FaPlus /></span>
                 <h3 className="home_content__card-title">And more!</h3>
                 <p className="home_content__card-text">
                   We also offer services such as search engine optimization to help your business perform better in search engine rankings like Google. 
@@ -77,7 +91,9 @@ function Home() {
         <div className="home_content__section home_content__section--alt">
           <div className="home_content__inner">
             <p className="home_content__eyebrow">How it works</p>
-            <h2 className="home_content__title">Our simple 3 step delivery process</h2>
+            <h2 className="home_content__title">
+              Our simple <span className="home_content__highlight">3 step</span> delivery process
+            </h2>
             <div className="home_content__grid">
               <div className="home_content__step">
                 <span className="home_content__step-number">01</span>
@@ -112,7 +128,9 @@ function Home() {
 
         <div className="home_content__section home_content__section--cta">
           <div className="home_content__inner home_content__cta">
-            <h2 className="home_content__title">Let's bring your vision to life</h2>
+            <h2 className="home_content__title">
+              Let's bring your <span className="home_content__highlight">vision</span> to life
+            </h2>
             <p className="home_content__intro">
               Schedule your free initial consultation today, we'd love to hear your ideas :)
             </p>

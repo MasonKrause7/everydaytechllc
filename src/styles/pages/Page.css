@@ -14,7 +14,7 @@
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--color-brand);
+  color: var(--color-accent);
 }
 
 .page__title {

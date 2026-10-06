@@ -15,6 +15,7 @@ type Props = {
 
 function ProjectGallery({ images }: Props) {
   const [active, setActive] = useState(0)
+  const [selected, setSelected] = useState(false)
   const current = images[active]
 
   return (
@@ -27,7 +28,8 @@ function ProjectGallery({ images }: Props) {
             poster={current.poster}
             aria-label={current.alt}
             className="gallery__image gallery__image--video"
-            autoPlay
+            autoPlay={selected}
+            preload="none"
             muted
             playsInline
             controls
@@ -53,7 +55,10 @@ function ProjectGallery({ images }: Props) {
                 className={`gallery__thumb${index === active ? ' gallery__thumb--active' : ''}`}
                 aria-label={`Show ${image.alt}`}
                 aria-pressed={index === active}
-                onClick={() => setActive(index)}
+                onClick={() => {
+                  setActive(index)
+                  setSelected(true)
+                }}
               >
                 <img src={image.poster ?? image.src} alt="" loading="lazy" />
                 {image.type === 'video' && (

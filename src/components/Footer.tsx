@@ -1,6 +1,6 @@
 import { Link } from 'react-router'
 import { FaFacebookF, FaGithub, FaInstagram, FaLinkedinIn, FaXTwitter } from 'react-icons/fa6'
-import logo from '../assets/logo.jpg'
+import logo from '../assets/brand/logo.svg'
 import '../styles/components/Footer.css'
 
 const socials = [
@@ -39,7 +39,7 @@ function Footer() {
       <div className="footer__inner">
         <div className="footer__brand">
           <Link to="/">
-            <img src={logo} alt="Every Day Tech LLC" className="footer__logo" />
+            <img src={logo} alt="Everyday Tech LLC" className="footer__logo" />
           </Link>
           <p className="footer__tagline">
             Custom websites, mobile apps, and AI integrations for small businesses.

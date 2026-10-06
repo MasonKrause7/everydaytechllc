@@ -32,14 +32,14 @@
   width: 100%;
   border: 1px solid var(--color-border);
   border-radius: 10px;
-  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5);
+  box-shadow: var(--shadow);
   display: flex;
   align-items: center;
   justify-content: center;
   aspect-ratio: 16 / 9;
   font-size: 0.95rem;
   color: var(--color-text-muted);
-  background-color: var(--color-bg);
+  background-color: var(--color-neutral);
   border-style: dashed;
 }
 
@@ -49,7 +49,7 @@
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--color-brand);
+  color: var(--color-accent);
 }
 
 .project__title {
@@ -78,8 +78,9 @@
 .project__tag {
   padding: 4px 12px;
   font-size: 0.85rem;
-  color: var(--color-brand);
-  border: 1px solid var(--color-border);
+  color: var(--color-secondary);
+  background-color: rgba(59, 107, 255, 0.08);
+  border: 1px solid rgba(59, 107, 255, 0.2);
   border-radius: 999px;
 }
 
@@ -87,11 +88,11 @@
   display: inline-block;
   margin-top: 28px;
   font-weight: 600;
-  color: var(--color-brand);
+  color: var(--color-secondary);
 }
 
 .project__link:hover {
-  color: var(--color-brand-dim);
+  color: var(--color-accent);
 }
 
 @media (max-width: 860px) {

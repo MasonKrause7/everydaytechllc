@@ -2,8 +2,32 @@
   position: sticky;
   top: 0;
   z-index: 10;
-  background-color: var(--color-bg);
-  border-bottom: 1px solid var(--color-border);
+  background:
+    radial-gradient(rgba(233, 236, 247, 0.07) 1px, transparent 1px) 0 0 / 22px 22px,
+    linear-gradient(
+      90deg,
+      rgba(59, 107, 255, 0.22),
+      transparent 35%,
+      transparent 65%,
+      rgba(126, 59, 255, 0.22)
+    ),
+    var(--color-primary);
+}
+
+.navbar::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-secondary),
+    var(--color-accent),
+    transparent
+  );
 }
 
 .navbar__inner {
@@ -18,13 +42,20 @@
 }
 
 .navbar__brand {
+  position: relative;
+  z-index: 1;
+  align-self: flex-start;
   display: flex;
   align-items: center;
-  height: 100%;
+  height: calc(var(--nav-height) + 12px);
+  padding: 10px 20px;
+  background-color: var(--color-neutral);
+  border-radius: 0 0 20px 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
 }
 
 .navbar__logo {
-  height: 68px;
+  height: 100%;
   width: auto;
 }
 
@@ -39,13 +70,21 @@
 
 .navbar__link {
   font-size: 0.95rem;
-  color: var(--color-text-muted);
-  transition: color 0.15s ease;
+  color: rgba(233, 236, 247, 0.75);
+  text-decoration: underline transparent 2px;
+  text-underline-offset: 8px;
+  transition:
+    color 0.15s ease,
+    text-decoration-color 0.15s ease;
 }
 
 .navbar__link:hover,
 .navbar__link--active {
-  color: var(--color-brand);
+  color: var(--color-neutral);
+}
+
+.navbar__link--active {
+  text-decoration-color: var(--color-accent);
 }
 
 .navbar__cta {
@@ -53,14 +92,14 @@
   padding: 8px 18px;
   font-size: 0.95rem;
   font-weight: 600;
-  color: var(--color-bg);
-  background-color: var(--color-brand);
-  border-radius: 6px;
-  transition: background-color 0.15s ease;
+  color: var(--color-surface);
+  background: linear-gradient(135deg, var(--color-secondary), var(--color-accent));
+  border-radius: 8px;
+  transition: box-shadow 0.2s ease;
 }
 
 .navbar__cta:hover {
-  background-color: var(--color-brand-dim);
+  box-shadow: 0 0 24px rgba(126, 59, 255, 0.55);
 }
 
 .navbar__toggle {
@@ -72,7 +111,7 @@
   height: 40px;
   padding: 8px;
   background: none;
-  border: 1px solid var(--color-border);
+  border: 1px solid rgba(233, 236, 247, 0.25);
   border-radius: 6px;
   cursor: pointer;
 }
@@ -80,7 +119,7 @@
 .navbar__toggle-bar {
   display: block;
   height: 2px;
-  background-color: var(--color-brand);
+  background-color: var(--color-neutral);
   border-radius: 1px;
 }
 
@@ -92,6 +131,7 @@
   .navbar__menu {
     display: none;
     position: absolute;
+    z-index: 2;
     top: var(--nav-height);
     left: 0;
     right: 0;
@@ -99,8 +139,8 @@
     align-items: stretch;
     gap: 0;
     padding: 8px 24px 20px;
-    background-color: var(--color-bg);
-    border-bottom: 1px solid var(--color-border);
+    background-color: var(--color-primary);
+    border-bottom: 1px solid rgba(126, 59, 255, 0.5);
   }
 
   .navbar__menu--open {

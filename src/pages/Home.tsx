@@ -8,7 +8,8 @@ function Home() {
         <div className="hero__inner">
           <p className="hero__eyebrow">Websites · Mobile Apps · Data analytics · AI integrations</p>
           <h1 className="hero__title">
-            Technology that works as hard as your small business.
+            <span className="hero__highlight">Technology</span> that works as hard as your
+            small <span className="hero__highlight">business.</span>
           </h1>
           <p className="hero__subtitle">
             Everyday Tech builds custom software solutions for all. You have a vision, we want to help you realize it. 

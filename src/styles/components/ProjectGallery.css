@@ -7,10 +7,10 @@
 .gallery__featured {
   margin: 0;
   overflow: hidden;
-  background-color: var(--color-bg);
+  background-color: var(--color-primary);
   border: 1px solid var(--color-border);
   border-radius: 10px;
-  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5);
+  box-shadow: var(--shadow);
 }
 
 .gallery__image {
@@ -29,6 +29,7 @@
   padding: 12px 16px;
   font-size: 0.9rem;
   color: var(--color-text-muted);
+  background-color: var(--color-surface);
   border-top: 1px solid var(--color-border);
 }
 
@@ -47,8 +48,8 @@
   width: 100%;
   padding: 0;
   overflow: hidden;
-  background-color: var(--color-bg);
-  border: 1px solid var(--color-border);
+  background-color: var(--color-primary);
+  border: 2px solid transparent;
   border-radius: 8px;
   opacity: 0.55;
   cursor: pointer;
@@ -76,10 +77,10 @@
   height: 36px;
   padding-left: 3px;
   font-size: 0.8rem;
-  color: var(--color-bg);
-  background-color: var(--color-brand);
+  color: var(--color-surface);
+  background-color: var(--color-secondary);
   border-radius: 50%;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 4px 12px rgba(10, 15, 31, 0.4);
   transform: translate(-50%, -50%);
 }
 
@@ -89,7 +90,7 @@
 
 .gallery__thumb--active {
   opacity: 1;
-  border-color: var(--color-brand);
+  border-color: var(--color-secondary);
 }
 
 @keyframes gallery-fade {

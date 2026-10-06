@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, NavLink } from 'react-router'
-import logo from '../assets/logo.jpg'
+import logo from '../assets/brand/logo.svg'
 import '../styles/components/Navbar.css'
 
 const links = [
@@ -18,7 +18,7 @@ function Navbar() {
     <header className="navbar">
       <nav className="navbar__inner" aria-label="Main">
         <Link to="/" className="navbar__brand" onClick={close}>
-          <img src={logo} alt="Every Day Tech LLC" className="navbar__logo" />
+          <img src={logo} alt="Everyday Tech LLC" className="navbar__logo" />
         </Link>
 
         <button

@@ -1,0 +1,129 @@
+.about__story {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 360px);
+  grid-template-rows: auto auto 1fr;
+  align-items: start;
+  gap: 20px clamp(40px, 6vw, 64px);
+  margin-top: 40px;
+}
+
+.about__story p {
+  grid-column: 1;
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.about__headshot {
+  position: relative;
+  grid-column: 2;
+  grid-row: 1 / -1;
+  aspect-ratio: 4 / 5;
+  margin: 0 14px 14px 0;
+}
+
+.about__headshot::before {
+  content: '';
+  position: absolute;
+  inset: 14px -14px -14px 14px;
+  border: 1.5px dashed rgba(126, 59, 255, 0.6);
+  border-radius: 18px;
+}
+
+.about__headshot img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 30%;
+  border-radius: 18px;
+  box-shadow: var(--shadow-photo);
+}
+
+.about__family {
+  margin: 72px 0 0;
+}
+
+.about__family-photos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.about__family-photo {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 18px;
+  box-shadow: var(--shadow-photo);
+}
+
+.about__family-photo--group {
+  object-position: 55% 50%;
+}
+
+.about__family-photo--lenox {
+  object-position: 62% 50%;
+}
+
+.about__caption {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 24px;
+  font-size: 0.95rem;
+  text-align: center;
+  text-wrap: balance;
+  color: var(--color-text-muted);
+}
+
+.about__caption::before,
+.about__caption::after {
+  content: '';
+  flex: 1;
+  min-width: 24px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(59, 107, 255, 0.4), rgba(126, 59, 255, 0.4));
+}
+
+.about__caption::after {
+  transform: scaleX(-1);
+}
+
+@media (max-width: 860px) {
+  .about__story {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+  }
+
+  .about__headshot {
+    grid-column: 1;
+    grid-row: 2;
+    width: min(100%, 280px);
+    margin: 20px 14px 34px 0;
+  }
+
+  .about__family {
+    margin-top: 56px;
+  }
+
+  .about__family-photos {
+    grid-template-columns: 1fr;
+  }
+
+  .about__caption {
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .about__caption::before {
+    flex: none;
+    width: 64px;
+    background: linear-gradient(90deg, var(--color-secondary), var(--color-accent));
+  }
+
+  .about__caption::after {
+    content: none;
+  }
+}

@@ -11,7 +11,7 @@ function About() {
         <p className="page__eyebrow">About</p>
         <h1 className="page__title">About Everyday Tech</h1>
         <p className="page__intro">
-          Who we are and how we work.
+          The experience and approach behind every project.
         </p>
 
         <div className="about__story">

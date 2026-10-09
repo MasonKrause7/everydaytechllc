@@ -18,6 +18,7 @@ import {
   FaWandMagicSparkles,
 } from 'react-icons/fa6'
 import Faq, { type FaqItem } from '../components/Faq'
+import { contactEmail, contactPhone } from '../data/contactInfo'
 import usePageMeta from '../hooks/usePageMeta'
 import faqStructuredData from '../utils/faqStructuredData'
 import '../styles/pages/Page.css'
@@ -36,6 +37,7 @@ type Service = {
   benefits: string[]
   pricing: string
   pricingAnchor: string
+  intakeQuery?: string
   proof?: string
 }
 
@@ -46,9 +48,9 @@ const services: Service[] = [
     label: 'Websites',
     name: 'Website design & development',
     title: 'Websites that bring in customers',
-    lead: 'For most customers, your website is their first impression of your business. Whether they find you on Google, through a social post, or from a friend\'s recommendation, they look you up before they call, visit, or buy. A slow, outdated, or hard-to-use website quietly sends them to a competitor.',
+    lead: 'For most customers, your website is their first impression of your organization. Whether they find you on Google, through a social post, or from a friend\'s recommendation, they look you up before they call, visit, or buy. A slow, outdated, or hard-to-use website quietly sends them to a competitor.',
     paragraphs: [
-      'We design and build custom websites for small businesses in Big Rapids, across West Michigan, and nationwide. Every site is written from scratch to fit your brand and your goals instead of being squeezed into a generic template. The result is a fast, mobile-friendly website that ranks well in search engines and makes it easy for visitors to become customers, whether that means calling you, booking an appointment, requesting a quote, or placing an order.',
+      'We design and build custom websites for small businesses and organizations in Big Rapids, across West Michigan, and nationwide. Every site is written from scratch to fit your brand and your goals instead of being squeezed into a generic template. The result is a fast, mobile-friendly website that ranks well in search engines and makes it easy for visitors to take the next step, whether that means calling you, booking an appointment, requesting a quote, placing an order, or signing up for an event.',
       'Unlike website builders that charge monthly fees forever and lock your content into their platform, you own your website outright. And unlike large agencies, you work directly with the engineer building it, so your project never gets lost in a chain of account managers.',
     ],
     included: [
@@ -80,7 +82,7 @@ const services: Service[] = [
     lead: 'A mobile app keeps your brand one tap away. Customers who install your app are some of your most loyal, and an app gives you a direct line to them through push notifications, rewards, and exclusive offers, without paying for ads or fighting a social media algorithm.',
     paragraphs: [
       'We build custom mobile apps for iPhone and Android. That includes customer-facing apps like rewards programs, daily deals, online ordering, and appointment booking, as well as internal tools that streamline your operations, such as scheduling, document uploads, e-signatures, checklists, and employee management. We handle the entire process, from design and development to App Store and Google Play publishing and updates after launch.',
-      'Custom apps used to be reserved for companies with large budgets and in-house development teams. We make them achievable for small businesses with focused feature sets, flexible payment arrangements, and a build approach that lets your app grow alongside your business.',
+      'Custom apps used to be reserved for companies with large budgets and in-house development teams. We make them achievable for small businesses and organizations with focused feature sets, flexible payment arrangements, and a build approach that lets your app grow alongside you.',
     ],
     included: [
       'Native-quality apps for iOS and Android',
@@ -100,6 +102,7 @@ const services: Service[] = [
     ],
     pricing: 'Mobile apps start around $1,500',
     pricingAnchor: 'apps',
+    intakeQuery: '?service=mobile-app',
     proof: 'See the iOS and Android apps we built for SCT Training and Axis',
   },
   {
@@ -108,14 +111,14 @@ const services: Service[] = [
     label: 'Cloud migrations',
     name: 'Cloud data migration',
     title: 'Get your data out of spreadsheets and into the cloud',
-    lead: 'Plenty of small businesses still run on spreadsheets, shared Google Docs, paper forms, and other manual processes. They work until they don\'t: files get duplicated, numbers stop matching, only one person knows where everything lives, and answering a simple question about your business takes an afternoon of digging.',
+    lead: 'Plenty of small businesses and organizations still run on spreadsheets, shared Google Docs, paper forms, and other manual processes. They work until they don\'t: files get duplicated, numbers stop matching, only one person knows where everything lives, and answering a simple question about your organization takes an afternoon of digging.',
     paragraphs: [
-      'We migrate your business data into a secure, cloud-based database designed around how your business actually works. Your customers, orders, inventory, jobs, or records end up in one organized place that you can access from anywhere, and that\'s ready to power dashboards, reports, apps, and automation. We clean up duplicates and inconsistencies along the way, and your current process keeps running until the new system is ready, so nothing gets lost in the switch.',
-      'Already have a server or an existing system, but not sure where your data is stored or how to use it? We\'ll track it down, untangle it, and help you take control of it. From there, we can build a dashboard around your data so you can see what\'s happening in your business at a glance, instead of leaving years of valuable information sitting unused.',
+      'We migrate your data into a secure, cloud-based database designed around how your organization actually works. Your customers, members, orders, inventory, jobs, or records end up in one organized place that you can access from anywhere, and that\'s ready to power dashboards, reports, apps, and automation. We clean up duplicates and inconsistencies along the way, and your current process keeps running until the new system is ready, so nothing gets lost in the switch.',
+      'Already have a server or an existing system, but not sure where your data is stored or how to use it? We\'ll track it down, untangle it, and help you take control of it. From there, we can build a dashboard around your data so you can see what\'s happening across your organization at a glance, instead of leaving years of valuable information sitting unused.',
     ],
     included: [
       'Review of your current spreadsheets, documents, and systems',
-      'Cloud database designed around your business',
+      'Cloud database designed around how you operate',
       'Data cleanup, deduplication, and formatting',
       'Migration with your current process running until launch',
       'Recovering and organizing data from existing servers and systems',
@@ -138,7 +141,7 @@ const services: Service[] = [
     label: 'Data analytics',
     name: 'Business data & analytics',
     title: 'Make decisions backed by real data',
-    lead: 'Most small businesses already have valuable data sitting in their point of sale system, website, spreadsheets, and social media accounts. The problem is that it\'s scattered across platforms and hard to turn into answers. Which marketing actually brings in customers? Which products are the most profitable? Where are people dropping off before they buy?',
+    lead: 'Most small businesses and organizations already have valuable data sitting in their point of sale system, website, spreadsheets, and social media accounts. The problem is that it\'s scattered across platforms and hard to turn into answers. Which marketing actually brings in customers? Which products are the most profitable? Where are people dropping off before they buy?',
     paragraphs: [
       'We connect your data sources and turn them into clear, easy-to-read dashboards and reports, so you can see what\'s working at a glance. Every product we build includes analytics from the start, and we use that data to continuously improve the customer experience and increase your conversion rates over time.',
       'Whether you have an existing tech suite or we build you a new one, we help you define the numbers that matter for your business, track them accurately, and act on them with confidence.',
@@ -166,11 +169,11 @@ const services: Service[] = [
     icon: FaWandMagicSparkles,
     label: 'AI integrations',
     name: 'AI automation & integrations',
-    title: 'Big-tech AI, sized for small business',
-    lead: 'AI can now take on much of the repetitive work that eats up a small business owner\'s day: answering common customer questions, drafting emails and quotes, sorting paperwork, and entering data. Used well, it frees you and your team up for the work that actually grows your business.',
+    title: 'Practical AI, sized for small teams',
+    lead: 'AI can now take on much of the repetitive work that eats up a small business owner\'s day: answering common customer questions, drafting emails and quotes, sorting paperwork, and entering data. Used well, it frees you and your team up for the work that matters most.',
     paragraphs: [
-      'Our founding engineer built the first AI integrated features for Amazon\'s Ads department and has extensive experience integrating AI agents into services for large corporations. Instead of making more profit for big companies, we bring those same capabilities to small businesses, with practical and reliable AI tools that solve real problems.',
-      'We start by learning how your business runs and identifying where AI can save you the most time or money. Then we build solutions that work with the tools you already use, with careful attention to accuracy, privacy, and keeping a human in the loop where it matters. If AI isn\'t the right fit for a problem, we\'ll tell you.',
+      'AI is only worth it if it\'s reliable. We bring hands-on experience building AI features to small businesses and local organizations, with practical tools that solve real problems instead of chasing hype.',
+      'We start by learning how your organization runs and identifying where AI can save you the most time or money. Then we build solutions that work with the tools you already use, with careful attention to accuracy, privacy, and keeping a human in the loop where it matters. If AI isn\'t the right fit for a problem, we\'ll tell you.',
     ],
     included: [
       'AI chat assistants that know your business',
@@ -184,10 +187,11 @@ const services: Service[] = [
       'Answer customer questions around the clock',
       'Cut hours of repetitive admin work every week',
       'Respond to new leads faster than your competitors',
-      'Get big-company capabilities without big-company costs',
+      'Get more done without adding staff',
     ],
     pricing: 'AI integrations start around $2,000',
     pricingAnchor: 'seo-ai',
+    intakeQuery: '?service=ai-integration',
     proof: 'See how Giggle Tales uses generative AI to create illustrated story books',
   },
   {
@@ -198,7 +202,7 @@ const services: Service[] = [
     title: 'Have an idea for an app? Let\'s build it together',
     lead: 'You don\'t need to own a business to work with us. If you have an idea for an app that solves a real problem, but not the technical background or the team to build it, we want to hear it.',
     paragraphs: [
-      'Pitch us your idea and we\'ll talk it through together: who it\'s for, what it needs to do, and what it would take to bring it to life. If it\'s a good fit, we can design, build, and launch it on the web, iPhone, and Android, with the same engineering standards we bring to every business we work with.',
+      'Pitch us your idea and we\'ll talk it through together: who it\'s for, what it needs to do, and what it would take to bring it to life. If it\'s a good fit, we can design, build, and launch it on the web, iPhone, and Android, with the same engineering standards we bring to every client we work with.',
       'A successful app takes both a great idea and a lot of work to build, and we believe both deserve to be rewarded. That\'s why we discuss ownership openly before any work begins. You can pay for development and own your app outright, or we can explore a partnership where we share ownership in exchange for a lower upfront cost. Whatever we agree on is put in writing, so everyone is compensated fairly for both the idea and the work.',
     ],
     included: [
@@ -218,6 +222,7 @@ const services: Service[] = [
     ],
     pricing: 'Flexible ownership & payment options',
     pricingAnchor: 'payment-plans',
+    intakeQuery: '?intent=idea',
   },
   {
     id: 'more',
@@ -225,9 +230,9 @@ const services: Service[] = [
     label: 'SEO & more',
     name: 'SEO, custom software & tech consulting',
     title: 'Whatever your tech needs, we can help',
-    lead: 'Not every project fits neatly in a box. If technology is slowing your business down, or you have an idea that no off-the-shelf product quite solves, we\'d love to hear about it.',
+    lead: 'Not every project fits neatly in a box. If technology is slowing your team down, or you have an idea that no off-the-shelf product quite solves, we\'d love to hear about it.',
     paragraphs: [
-      'Search engine optimization is one of the most valuable investments a local business can make. We help your business show up when customers in Big Rapids, Grand Rapids, and across West Michigan search for the products and services you offer, through technical SEO, local search optimization, Google Business Profile improvements, and content that answers your customers\' questions.',
+      'Search engine optimization is one of the most valuable investments a local business or organization can make. We help you show up when people in Big Rapids, Grand Rapids, and across West Michigan search for the products and services you offer, through technical SEO, local search optimization, Google Business Profile improvements, and content that answers your customers\' questions.',
       'We also build custom web applications, customer portals, and integrations between the tools you already use. Not sure what you need? Book a free consultation and we\'ll help you figure out the right solution, even if that turns out to be an existing product instead of something custom.',
     ],
     included: [
@@ -274,8 +279,8 @@ const reasons: { icon: IconType; title: string; text: string }[] = [
   },
   {
     icon: FaAward,
-    title: 'Big-tech experience',
-    text: 'Our founding engineer built AI features for Amazon. You get the engineering standards of a large tech company at a price that makes sense for a small business.',
+    title: 'Professional engineering',
+    text: 'You get the engineering standards of a large tech company at a price that makes sense for small teams and tight budgets.',
   },
   {
     icon: FaHandHoldingDollar,
@@ -290,7 +295,7 @@ const reasons: { icon: IconType; title: string; text: string }[] = [
   {
     icon: FaCode,
     title: 'Built from scratch',
-    text: 'No bloated templates or page builders. Your solution is designed around how your business actually works, and built to grow as your business does.',
+    text: 'No bloated templates or page builders. Your solution is designed around how your organization actually works, and built to grow as you do.',
   },
   {
     icon: FaChartLine,
@@ -306,19 +311,19 @@ const faqs: FaqItem[] = [
   },
   {
     question: 'Do you meet with clients in person?',
-    answer: 'Yes. We\'re based in Big Rapids, Michigan, and offer in-person consultations for businesses throughout West Michigan, including Grand Rapids, Mount Pleasant, Cadillac, Reed City, Ludington, and Muskegon. We\'re also happy to meet over video call.',
+    answer: 'Yes. We\'re based in Big Rapids, Michigan, and offer in-person consultations for businesses and organizations throughout West Michigan, including Grand Rapids, Mount Pleasant, Cadillac, Reed City, Ludington, and Muskegon. We\'re also happy to meet over video call.',
   },
   {
-    question: 'Do you work with businesses outside of Michigan?',
-    answer: 'Absolutely. We work with small businesses across the United States. Remote clients get the same experience through video calls, a shared design document, and frequent progress updates.',
+    question: 'Do you work with clients outside of Michigan?',
+    answer: 'Absolutely. We work with small businesses and organizations across the United States. Remote clients get the same experience through video calls, a shared design document, and frequent progress updates.',
   },
   {
     question: 'Will I own the code for my website or app?',
     answer: 'Yes. Every solution is built from scratch and you have full proprietary ownership. We share the codebase with you, so you can always bring in another agency or developer to build on top of it later. The only exception is if you choose a shared-ownership partnership for an app idea, in which case ownership is split exactly as we agree to in writing.',
   },
   {
-    question: 'Can you move my business off of spreadsheets?',
-    answer: 'Yes. We migrate data from spreadsheets, Google Docs and Sheets, paper records, and existing servers or systems into a secure cloud database designed around your business. We clean up the data along the way and can build dashboards on top of it, so you can actually use the information you\'ve been collecting.',
+    question: 'Can you move my organization off of spreadsheets?',
+    answer: 'Yes. We migrate data from spreadsheets, Google Docs and Sheets, paper records, and existing servers or systems into a secure cloud database designed around how you work. We clean up the data along the way and can build dashboards on top of it, so you can actually use the information you\'ve been collecting.',
   },
   {
     question: 'I don\'t have a business, but I have an app idea. Can you help?',
@@ -334,7 +339,7 @@ const faqs: FaqItem[] = [
   },
   {
     question: 'Is AI a good fit for my business?',
-    answer: 'Often, yes, especially if you spend a lot of time on repetitive tasks like answering the same customer questions, entering data, or writing follow-up emails. In a free consultation, we\'ll look at how your business runs and give you an honest assessment of where AI can help and where it can\'t.',
+    answer: 'Often, yes, especially if you spend a lot of time on repetitive tasks like answering the same customer questions, entering data, or writing follow-up emails. In a free consultation, we\'ll look at how your team works and give you an honest assessment of where AI can help and where it can\'t.',
   },
   {
     question: 'What happens after my project launches?',
@@ -349,8 +354,9 @@ const structuredData = {
       '@type': 'ProfessionalService',
       name: 'Everyday Tech LLC',
       description:
-        'Custom websites, mobile apps, cloud data migrations, data analytics, and AI integrations for small businesses in Big Rapids, West Michigan, and nationwide, plus app development for individuals with app ideas.',
-      email: 'mason@everydaytechllc.com',
+        'Custom websites, mobile apps, cloud data migrations, data analytics, and AI integrations for small businesses and organizations in Big Rapids, West Michigan, and nationwide, plus app development for individuals with app ideas.',
+      email: contactEmail,
+      telephone: contactPhone.number,
       address: {
         '@type': 'PostalAddress',
         addressLocality: 'Big Rapids',
@@ -381,7 +387,7 @@ const structuredData = {
 function Services() {
   usePageMeta(
     'Web Design & App Development in Big Rapids, MI | Everyday Tech',
-    'Custom websites, mobile apps, cloud data migrations, analytics, and AI for small businesses in Big Rapids and West Michigan. Free in-person consultations.',
+    'Custom websites, mobile apps, cloud data migrations, analytics, and AI for small businesses and organizations in Big Rapids and West Michigan. Free in-person consultations.',
   )
 
   return (
@@ -401,8 +407,8 @@ function Services() {
           <p className="page__intro">
             Everyday Tech is a software company based in Big Rapids, Michigan. We build custom
             websites, mobile apps, cloud databases, data analytics, and AI integrations for small
-            businesses, with free in-person consultations across West Michigan and clients
-            nationwide. Every solution is built from scratch, priced for small business budgets,
+            businesses and organizations, with free in-person consultations across West Michigan
+            and clients nationwide. Every solution is built from scratch, priced for smaller budgets,
             and 100% owned by you. Not a business owner? If you have a great app idea, we'd love to
             hear it.
           </p>
@@ -466,7 +472,10 @@ function Services() {
                   See pricing →
                 </Link>
               </div>
-              <Link to="/start-project" className="hero__button hero__button--primary service__cta">
+              <Link
+                to={`/start-project${service.intakeQuery ?? ''}`}
+                className="hero__button hero__button--primary service__cta"
+              >
                 Get a free consultation
               </Link>
             </aside>
@@ -485,14 +494,14 @@ function Services() {
               <span className="home_content__highlight">West Michigan</span>
             </h2>
             <p className="services-local__text">
-              The best software comes from truly understanding your business, and there's no
+              The best software comes from truly understanding your organization, and there's no
               substitute for sitting down together face to face. That's why we offer free
-              in-person consultations for small businesses in Big Rapids and throughout West
-              Michigan. We'll meet you where it's convenient, learn how your business runs, and
+              in-person consultations for businesses and organizations in Big Rapids and throughout
+              West Michigan. We'll meet you where it's convenient, learn how you operate, and
               talk through what technology can do for you.
             </p>
             <p className="services-local__text">
-              Not in Michigan? We work with small businesses across the United States through video
+              Not in Michigan? We work with clients across the United States through video
               calls, shared design documents, and frequent progress updates, so you get the same
               level of communication wherever you are.
             </p>

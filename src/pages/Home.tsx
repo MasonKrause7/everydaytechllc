@@ -9,6 +9,8 @@ import {
   FaPlus,
   FaWandMagicSparkles,
 } from 'react-icons/fa6'
+import consultationPhoto from '../assets/home/consultation.jpg'
+import writingCodePhoto from '../assets/home/writing-code.jpg'
 import '../styles/pages/Home.css'
 
 function Home() {
@@ -37,22 +39,36 @@ function Home() {
       <section className="home_content">
         <div className="home_content__section">
           <div className="home_content__inner">
-            <p className="home_content__eyebrow">What we do</p>
-            <h2 className="home_content__title">
-              Affordable <span className="home_content__highlight">custom solutions</span>
-            </h2>
-            <p className="home_content__intro">
-              Traditional custom software took a team to build and cost too much for the average small business.
-              We eliminate that barrier by offering tailored solutions that fit your needs, and your budget. 
-              We offer flexible payment arrangements, so that your business can start scaling as soon as possible. 
-              Solutions are built from scratch - we write the code, and you have full proprietary ownership.
-            </p>
+            <div className="home_content__feature">
+              <div>
+                <p className="home_content__eyebrow">What we do</p>
+                <h2 className="home_content__title">
+                  Affordable <span className="home_content__highlight">custom solutions</span>
+                </h2>
+                <p className="home_content__intro">
+                  Traditional custom software took a team to build and cost too much for the average small business or local organization.
+                  We eliminate that barrier by offering tailored solutions that fit your needs, and your budget. 
+                  We offer flexible payment arrangements, so that your organization can start scaling as soon as possible. 
+                  Solutions are built from scratch - we write the code, and you have full proprietary ownership.
+                </p>
+              </div>
+              <figure className="home_content__photo home_content__photo--framed">
+                <img
+                  src={writingCodePhoto}
+                  alt="Close-up of hands typing on a laptop keyboard"
+                  width={1200}
+                  height={1000}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
+            </div>
             <div className="home_content__grid">
               <div className="home_content__card">
                 <span className="home_content__icon"><FaGlobe /></span>
                 <h3 className="home_content__card-title">Websites</h3>
                 <p className="home_content__card-text">
-                  A strong website helps new customers find your business, leaves a lasting first impression, and builds trust in your brand.
+                  A strong website helps new customers and community members find you, leaves a lasting first impression, and builds trust in your brand.
                   We specialize in building effective, modern websites that you can be proud of, without incurring a massive up front expense.
                 </p>
               </div>
@@ -69,7 +85,7 @@ function Home() {
                 <span className="home_content__icon"><FaCloudArrowUp /></span>
                 <h3 className="home_content__card-title">Cloud migrations</h3>
                 <p className="home_content__card-text">
-                  Still managing your business through spreadsheets, Google Docs, or paper? We migrate your data to a secure cloud database so it's organized and ready to use.
+                  Still running your organization on spreadsheets, Google Docs, or paper? We migrate your data to a secure cloud database so it's organized and ready to use.
                   Have a server or existing system but aren't sure where your data lives? We'll help you take control of it and build a dashboard around it.
                 </p>
               </div>
@@ -84,7 +100,8 @@ function Home() {
                 <span className="home_content__icon"><FaWandMagicSparkles /></span>
                 <h3 className="home_content__card-title">AI integrations</h3>
                 <p className="home_content__card-text">
-                  Our founding engineer built the first AI integrated features for Amazon's Ads department, and has extensive experience integrating AI agents into services for big corporate. Instead of making more profit for large corporations, we want to empower small businesses through those same capabilities. Let's chat and see if an AI automation could benefit your business.
+                  AI can now take on much of the repetitive work that eats up your day, like answering common questions, drafting emails, and entering data.
+                  We bring big-tech AI experience to small businesses and local organizations. Let's chat and see if an AI automation could benefit your team.
                 </p>
               </div>
               <div className="home_content__card">
@@ -106,7 +123,7 @@ function Home() {
                 </p>
               </div>
               <div className="home_content__idea-actions">
-                <Link to="/start-project" className="hero__button hero__button--primary">
+                <Link to="/start-project?intent=idea" className="hero__button hero__button--primary">
                   Pitch your idea
                 </Link>
                 <Link to="/services#app-ideas" className="home_content__idea-link">
@@ -123,12 +140,22 @@ function Home() {
             <h2 className="home_content__title">
               Our simple <span className="home_content__highlight">3 step</span> delivery process
             </h2>
+            <figure className="home_content__photo home_content__photo--banner">
+              <img
+                src={consultationPhoto}
+                alt="Two people talking through a project on a laptop at a cafe table"
+                width={2000}
+                height={1334}
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
             <div className="home_content__grid">
               <div className="home_content__step">
                 <span className="home_content__step-number">01</span>
                 <h3 className="home_content__card-title">Initial Consultation</h3>
                 <p className="home_content__card-text">
-                  In this step, we get to know you, your business, your brand, and your goals and vision for the future. 
+                  In this step, we get to know you, your organization, your brand, and your goals and vision for the future. 
                   If our services fit your needs, we discuss how we can help you reach those goals, how we can quantify and track the results, and what your budget and timeline are for the project.
                   Once we agree on the terms, we can begin the project by finalizing a contract.
                 </p>

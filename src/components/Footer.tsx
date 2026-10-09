@@ -1,6 +1,15 @@
 import { Link } from 'react-router'
-import { FaFacebookF, FaGithub, FaInstagram, FaLinkedinIn, FaXTwitter } from 'react-icons/fa6'
+import {
+  FaFacebookF,
+  FaFlagUsa,
+  FaGithub,
+  FaInstagram,
+  FaLinkedinIn,
+  FaMedal,
+  FaXTwitter,
+} from 'react-icons/fa6'
 import logo from '../assets/brand/logo.svg'
+import { contactEmail, contactPhone } from '../data/contactInfo'
 import '../styles/components/Footer.css'
 
 const socials = [
@@ -46,7 +55,7 @@ function Footer() {
             <img src={logo} alt="Everyday Tech LLC" className="footer__logo" />
           </Link>
           <p className="footer__tagline">
-            Custom websites, mobile apps, and AI integrations for small businesses.
+            Custom websites, mobile apps, and AI integrations for small businesses and organizations.
           </p>
           <ul className="footer__socials">
             {socials.map(({ href, label, icon: Icon }) => (
@@ -84,11 +93,29 @@ function Footer() {
           <h2 className="footer__heading">Get in touch</h2>
           <ul className="footer__links">
             <li>
-              <a href="mailto:mason@everydaytechllc.com" className="footer__link">
-                mason@everydaytechllc.com
+              <a href={contactPhone.href} className="footer__link">
+                {contactPhone.label}
               </a>
             </li>
-            <li className="footer__text">Serving clients nationwide</li>
+            <li>
+              <a href={`mailto:${contactEmail}`} className="footer__link">
+                {contactEmail}
+              </a>
+            </li>
+          </ul>
+          <ul className="footer__badges">
+            <li className="footer__badge">
+              <span className="footer__badge-icon">
+                <FaFlagUsa aria-hidden />
+              </span>
+              Serving clients nationwide
+            </li>
+            <li className="footer__badge">
+              <span className="footer__badge-icon">
+                <FaMedal aria-hidden />
+              </span>
+              Veteran owned and operated
+            </li>
           </ul>
         </div>
       </div>

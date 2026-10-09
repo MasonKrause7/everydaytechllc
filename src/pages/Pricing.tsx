@@ -20,6 +20,7 @@ import '../styles/pages/Pricing.css'
 
 type Tier = {
   name: string
+  service: string
   min: number
   max: number
   openEnded?: boolean
@@ -47,6 +48,7 @@ const tierGroups: TierGroup[] = [
     tiers: [
       {
         name: 'Single-page website',
+        service: 'single-page-website',
         min: 400,
         max: 600,
         badge: 'Most affordable',
@@ -62,6 +64,7 @@ const tierGroups: TierGroup[] = [
       },
       {
         name: '3-page website',
+        service: '3-page-website',
         min: 650,
         max: 1000,
         badge: 'A good starting point to gain visibility',
@@ -73,7 +76,7 @@ const tierGroups: TierGroup[] = [
           'Mobile-friendly, fast-loading layout',
           'Analytics setup to see how visitors find you',
         ],
-        bestFor: 'Established local businesses that want to be found on Google and turn visitors into customers.',
+        bestFor: 'Established local businesses and organizations that want to be found on Google and turn visitors into customers.',
       },
     ],
   },
@@ -81,10 +84,11 @@ const tierGroups: TierGroup[] = [
     id: 'apps',
     eyebrow: 'Web & mobile apps',
     title: 'Web app & mobile app development pricing',
-    intro: 'Apps add a database and real functionality to your business, like user accounts, admin dashboards, and tools you can manage yourself. A self-service app costs a bit more up front, but it is more sustainable and cost-efficient in the long run because you are not paying someone every time something needs to change.',
+    intro: 'Apps add a database and real functionality to your organization, like user accounts, admin dashboards, and tools you can manage yourself. A self-service app costs a bit more up front, but it is more sustainable and cost-efficient in the long run because you are not paying someone every time something needs to change.',
     tiers: [
       {
         name: 'Web app',
+        service: 'web-app',
         min: 1000,
         max: 3000,
         badge: 'Best for most small businesses',
@@ -92,15 +96,16 @@ const tierGroups: TierGroup[] = [
         summary: 'A website with a database and functionality behind it. Manage your own content, view usage and analytics, and give customers features that go beyond a static page.',
         features: [
           'Everything included in our websites',
-          'Database to store your business data',
+          'Database to store your organization\'s data',
           'Admin dashboard for usage and analytics',
           'Self-service updates for things like weekly events, menus, or specials',
           'User accounts and secure sign in when needed',
         ],
-        bestFor: 'Businesses that update their content regularly or want to offer real functionality for their customers, like signing up and logging in, booking appointments, making payments, or uploading documents.',
+        bestFor: 'Organizations that update their content regularly or want to offer real functionality for their customers or members, like signing up and logging in, booking appointments, making payments, or uploading documents.',
       },
       {
         name: 'Mobile app',
+        service: 'mobile-app',
         min: 1500,
         max: 5000,
         summary: 'Similar to a web app, but built for phones, which takes more time and specialization. Pricing depends on whether you need iOS, Android, or both, and on the app\'s complexity.',
@@ -115,6 +120,7 @@ const tierGroups: TierGroup[] = [
       },
       {
         name: 'Full tech suite',
+        service: 'full-tech-suite',
         min: 3000,
         max: 7000,
         openEnded: true,
@@ -127,7 +133,7 @@ const tierGroups: TierGroup[] = [
           'Detailed analytics across every platform',
           'Data-driven optimization based on real usage',
         ],
-        bestFor: 'Growing businesses ready to run their operations and customer experience through their own technology.',
+        bestFor: 'Growing organizations ready to run their operations and customer experience through their own technology.',
       },
     ],
   },
@@ -135,10 +141,11 @@ const tierGroups: TierGroup[] = [
     id: 'seo-ai',
     eyebrow: 'SEO & AI',
     title: 'SEO & AI integration pricing',
-    intro: 'Grow the business you already have. Search engine optimization helps more customers find you, and AI automation takes repetitive work off your plate so you can focus on what you do best.',
+    intro: 'Grow what you\'ve already built. Search engine optimization helps more customers find you, and AI automation takes repetitive work off your plate so you can focus on what you do best.',
     tiers: [
       {
         name: 'SEO (standalone)',
+        service: 'seo',
         min: 500,
         max: 1000,
         summary: 'SEO is built into every new website and web app we create. For businesses with an existing website, we offer SEO as a standalone service with measurable results.',
@@ -152,6 +159,7 @@ const tierGroups: TierGroup[] = [
       },
       {
         name: 'AI integration',
+        service: 'ai-integration',
         min: 2000,
         max: 10000,
         summary: 'Pricing depends on the application and scale of the integration. AI features come with ongoing usage costs, so we keep our development pricing as lean as possible to help offset them.',
@@ -162,7 +170,7 @@ const tierGroups: TierGroup[] = [
           'Custom AI features inside your website or app',
           'Honest guidance on expected ongoing AI costs',
         ],
-        bestFor: 'Businesses spending hours each week on repetitive questions, paperwork, or data entry.',
+        bestFor: 'Teams spending hours each week on repetitive questions, paperwork, or data entry.',
       },
     ],
   },
@@ -193,7 +201,7 @@ const growthSteps = [
   },
   {
     title: 'Prove the value',
-    text: 'Put your web app to work, watch the analytics, and see the impact on your business before you invest in anything more.',
+    text: 'Put your web app to work, watch the analytics, and see the impact on your organization before you invest in anything more.',
   },
   {
     title: 'Add on when you\'re ready',
@@ -237,7 +245,7 @@ const priceFactors: { icon: IconType; title: string; text: string }[] = [
   {
     icon: FaRobot,
     title: 'AI usage and scale',
-    text: 'How many people will use an AI feature and how much work it handles for your business.',
+    text: 'How many people will use an AI feature and how much work it handles for your team.',
   },
 ]
 
@@ -398,7 +406,7 @@ function Pricing() {
                     <strong>Best for:</strong> {tier.bestFor}
                   </p>
                   <Link
-                    to="/start-project"
+                    to={`/start-project?service=${tier.service}`}
                     className="hero__button hero__button--primary pricing-card__cta"
                   >
                     Get a free quote

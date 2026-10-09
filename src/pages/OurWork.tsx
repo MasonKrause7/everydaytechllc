@@ -4,6 +4,7 @@ import busyBeeGroups from '../assets/my-work/busybee/busybee-groups.png'
 import busyBeeHome from '../assets/my-work/busybee/busybee-home.png'
 import busyBeeLogin from '../assets/my-work/busybee/busybee-login.png'
 import busyBeeStats from '../assets/my-work/busybee/busybee-stats.png'
+import giggleTalesAbout from '../assets/my-work/giggle-tales/giggle-tales-about.png'
 import giggleTalesLogin from '../assets/my-work/giggle-tales/giggle-tales.png'
 import giggleTalesPrompt from '../assets/my-work/giggle-tales/giggle-tales-prompt-screen.png'
 import giggleTalesGeneration from '../assets/my-work/giggle-tales/giggle-tales-story-generation.png'
@@ -86,6 +87,7 @@ const projects: Project[] = [
       'Giggle Tales is an app available online that leverages generative AI to help children create story books based on their ideas. Anyone can simply enter their idea for a story, wait a few minutes, and have a book generated with illustrations. We want to promote reading and eliminate the need for families to spend money buying books to get their child a variety of reading material. Giggle tales allows you to configure your childs reading level, story length, etc, so that your child gets engaging stories based on their original ideas that help them progress.',
     tags: ['Authentication', 'Gen AI Integration', 'Educational'],
     images: [
+      { src: giggleTalesAbout, alt: 'Meet the team behind Giggle Tales' },
       { src: giggleTalesStory, alt: 'Reading a generated, illustrated story book' },
       { src: giggleTalesPrompt, alt: 'Entering a story idea' },
       { src: giggleTalesGeneration, alt: 'Generating the story on mobile' },

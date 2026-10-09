@@ -12,7 +12,7 @@
     linear-gradient(135deg, rgba(59, 107, 255, 0.6), rgba(126, 59, 255, 0.6)) border-box;
   border: 1.5px solid transparent;
   border-radius: 14px;
-  box-shadow: 0 24px 48px rgba(10, 15, 31, 0.18);
+  box-shadow: var(--shadow-photo);
 }
 
 .gallery__image {

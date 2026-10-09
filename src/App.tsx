@@ -11,7 +11,7 @@ import Services from './pages/Services'
 import StartProject from './pages/StartProject'
 
 function App() {
-  const { pathname, hash } = useLocation()
+  const { pathname, search, hash } = useLocation()
 
   useEffect(() => {
     const target = hash ? document.getElementById(hash.slice(1)) : null
@@ -30,7 +30,7 @@ function App() {
           <Route path="/our-work" element={<OurWork />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/start-project" element={<StartProject />} />
+          <Route path="/start-project" element={<StartProject key={search} />} />
         </Routes>
       </main>
       <Footer />

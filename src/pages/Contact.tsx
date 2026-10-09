@@ -5,16 +5,16 @@ import {
   FaCircleCheck,
   FaEnvelope,
   FaLocationDot,
+  FaPhone,
   FaVideo,
 } from 'react-icons/fa6'
+import { contactEmail, contactPhone } from '../data/contactInfo'
 import usePageMeta from '../hooks/usePageMeta'
 import '../styles/pages/Page.css'
 import '../styles/pages/Home.css'
 import '../styles/pages/Contact.css'
 
 type Status = 'idle' | 'sending' | 'sent' | 'error'
-
-const contactEmail = 'mason@everydaytechllc.com'
 
 function Contact() {
   usePageMeta(
@@ -135,7 +135,7 @@ function Contact() {
                   </div>
                   <div className="contact-form__field">
                     <label htmlFor="contact-company" className="contact-form__label">
-                      Business name <span className="contact-form__optional">(optional)</span>
+                      Business or organization name <span className="contact-form__optional">(optional)</span>
                     </label>
                     <input
                       id="contact-company"
@@ -187,6 +187,17 @@ function Contact() {
           <aside className="contact__aside">
             <h2 className="contact__card-title">Other ways to reach us</h2>
             <ul className="contact__details">
+              <li className="contact__detail">
+                <span className="contact__detail-icon">
+                  <FaPhone aria-hidden />
+                </span>
+                <div>
+                  <p className="contact__detail-label">Call or text</p>
+                  <a href={contactPhone.href} className="contact__detail-link">
+                    {contactPhone.label}
+                  </a>
+                </div>
+              </li>
               <li className="contact__detail">
                 <span className="contact__detail-icon">
                   <FaEnvelope aria-hidden />

@@ -3,7 +3,7 @@
   top: 0;
   z-index: 10;
   background:
-    radial-gradient(rgba(233, 236, 247, 0.07) 1px, transparent 1px) 0 0 / 22px 22px,
+    var(--texture-dark) center top / var(--texture-size),
     linear-gradient(
       90deg,
       rgba(59, 107, 255, 0.22),

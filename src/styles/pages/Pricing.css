@@ -224,7 +224,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(rgba(233, 236, 247, 0.06) 1px, transparent 1px) 0 0 / 28px 28px;
+  background: var(--texture-dark) center calc(-1 * var(--texture-y, 0px)) / var(--texture-size);
   pointer-events: none;
 }
 

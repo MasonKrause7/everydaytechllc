@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { Route, Routes, useLocation } from 'react-router'
 import Footer from './components/Footer'
 import Navbar from './components/Navbar'
+import { useTextureAlignment } from './hooks/useTextureAlignment'
 import About from './pages/About'
 import Contact from './pages/Contact'
 import Home from './pages/Home'
@@ -12,6 +13,7 @@ import StartProject from './pages/StartProject'
 
 function App() {
   const { pathname, search, hash } = useLocation()
+  useTextureAlignment(pathname)
 
   useEffect(() => {
     const target = hash ? document.getElementById(hash.slice(1)) : null

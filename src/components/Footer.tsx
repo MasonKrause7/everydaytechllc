@@ -2,9 +2,7 @@ import { Link } from 'react-router'
 import {
   FaFacebookF,
   FaFlagUsa,
-  FaGithub,
   FaInstagram,
-  FaLinkedinIn,
   FaMedal,
   FaXTwitter,
 } from 'react-icons/fa6'
@@ -13,11 +11,13 @@ import { contactEmail, contactPhone } from '../data/contactInfo'
 import '../styles/components/Footer.css'
 
 const socials = [
-  { href: 'https://www.linkedin.com/', label: 'LinkedIn', icon: FaLinkedinIn },
-  { href: 'https://github.com/', label: 'GitHub', icon: FaGithub },
-  { href: 'https://www.facebook.com/', label: 'Facebook', icon: FaFacebookF },
-  { href: 'https://www.instagram.com/', label: 'Instagram', icon: FaInstagram },
-  { href: 'https://x.com/', label: 'X', icon: FaXTwitter },
+  {
+    href: 'https://www.facebook.com/profile.php?id=61595230316060',
+    label: 'Facebook',
+    icon: FaFacebookF,
+  },
+  { href: 'https://www.instagram.com/everydaytechllc', label: 'Instagram', icon: FaInstagram },
+  { href: 'https://x.com/everydaytechllc', label: 'X', icon: FaXTwitter },
 ]
 
 const columns = [

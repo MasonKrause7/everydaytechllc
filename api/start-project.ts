@@ -43,7 +43,7 @@ const paymentPlans: Record<string, string> = {
   'not-sure': 'Not sure yet',
 }
 
-const sourceKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'referrer']
+const sourceKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'referrer']
 
 const contactEmail = 'mason@everydaytechllc.com'
 const contactPhone = '(931) 551-6823'

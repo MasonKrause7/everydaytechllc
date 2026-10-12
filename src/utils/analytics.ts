@@ -11,8 +11,6 @@ declare global {
 const env = import.meta.env
 const enabled = env.PROD
 const gaId: string | undefined = env.VITE_GA_MEASUREMENT_ID
-const adsId: string | undefined = env.VITE_GOOGLE_ADS_ID
-const adsLeadLabel: string | undefined = env.VITE_GOOGLE_ADS_LEAD_LABEL
 const clarityId: string | undefined = env.VITE_CLARITY_PROJECT_ID
 
 function loadScript(src: string) {
@@ -37,16 +35,15 @@ function handleClick(event: MouseEvent) {
 export function initAnalytics() {
   if (!enabled) return
 
-  if (gaId || adsId) {
+  if (gaId) {
     window.dataLayer = window.dataLayer ?? []
     window.gtag = function gtag() {
       // gtag.js only accepts the native arguments object, not a rest array.
       window.dataLayer!.push(arguments)
     }
     window.gtag('js', new Date())
-    if (gaId) window.gtag('config', gaId, { send_page_view: false })
-    if (adsId) window.gtag('config', adsId)
-    loadScript(`https://www.googletagmanager.com/gtag/js?id=${gaId ?? adsId}`)
+    window.gtag('config', gaId, { send_page_view: false })
+    loadScript(`https://www.googletagmanager.com/gtag/js?id=${gaId}`)
   }
 
   if (clarityId) {
@@ -77,8 +74,5 @@ export function trackEvent(name: string, params: EventParams = {}) {
 
 export function trackLead(form: 'contact' | 'start_project' | 'booking', params: EventParams = {}) {
   trackEvent('generate_lead', { form, ...params })
-  if (enabled && adsId && adsLeadLabel) {
-    window.gtag?.('event', 'conversion', { send_to: `${adsId}/${adsLeadLabel}` })
-  }
   window.clarity?.('set', 'lead', form)
 }

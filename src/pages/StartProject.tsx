@@ -53,7 +53,7 @@ type Answers = {
 type Status = 'idle' | 'sending' | 'sent' | 'error'
 
 const autoAdvanceDelay = 220
-const sourceParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid']
+const sourceParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content']
 
 const budgetAmount = (answers: Answers) =>
   answers.budgetUnsure ? null : Number(answers.budget) || null

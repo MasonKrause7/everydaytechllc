@@ -25,7 +25,7 @@ function Privacy() {
           (Supabase) and delivered to our inbox through our email provider (Resend).
         </p>
 
-        <h2>Analytics and advertising</h2>
+        <h2>Analytics</h2>
         <p>
           We use analytics tools to understand how visitors use this site so we can improve it.
           These tools may collect information such as the pages you visit, how you arrived at the
@@ -37,14 +37,10 @@ function Privacy() {
             performance without using cookies.
           </li>
           <li>
-            <strong>Google Analytics and Google Ads</strong> use cookies to measure site traffic and
-            whether our ads lead to inquiries. You can opt out with the{' '}
+            <strong>Google Analytics</strong> uses cookies to measure site traffic and which pages
+            lead to inquiries. You can opt out with the{' '}
             <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noreferrer">
               Google Analytics opt-out browser add-on
-            </a>{' '}
-            or adjust your{' '}
-            <a href="https://adssettings.google.com" target="_blank" rel="noreferrer">
-              Google ad settings
             </a>
             .
           </li>

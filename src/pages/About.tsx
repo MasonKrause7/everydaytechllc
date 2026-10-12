@@ -16,8 +16,8 @@ function About() {
 
         <div className="about__story">
           <p>
-            I'm Mason Krause, a veteran and the founder of Everyday Tech. I joined Amazon straight
-            out of college as a software engineer and helped build some of the first AI-powered
+            I'm Mason Krause, a US Army veteran and the founder of Everyday Tech. After four years as an Infantryman, I attended Austin Peay State University in Clarksville, Tennessee to earn my bachelors in Computer Science.
+            I joined Amazon straight out of college as a software engineer and helped build some of the first AI-powered
             tools in Amazon Advertising. The code I wrote supports features that bring in billions
             of dollars in ad revenue each year.
           </p>

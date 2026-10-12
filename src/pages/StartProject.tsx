@@ -8,6 +8,7 @@ import {
   FaPhone,
 } from 'react-icons/fa6'
 import usePageMeta from '../hooks/usePageMeta'
+import { trackEvent, trackLead } from '../utils/analytics'
 import { contactEmail, contactPhone } from '../data/contactInfo'
 import {
   findOption,
@@ -50,7 +51,7 @@ type Answers = {
 type Status = 'idle' | 'sending' | 'sent' | 'error'
 
 const autoAdvanceDelay = 220
-const sourceParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content']
+const sourceParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid']
 
 const budgetAmount = (answers: Answers) =>
   answers.budgetUnsure ? null : Number(answers.budget) || null
@@ -123,7 +124,7 @@ function OptionGrid({
 
 function StartProject() {
   usePageMeta(
-    'Start a Project | Everyday Tech | Big Rapids, MI',
+    'Start a Project | Everyday Tech | West Michigan',
     'Tell us about your business, organization, or app idea in a few quick steps, and we\'ll follow up within a day or two with next steps and a free consultation.',
   )
 
@@ -160,8 +161,11 @@ function StartProject() {
   const stepIndex = Math.max(steps.indexOf(step), 0)
   const isIdea = answers.stage === 'idea'
   const belowMinimum = isBelowMinimum(answers)
-
   useEffect(() => () => window.clearTimeout(advanceTimer.current), [])
+
+  useEffect(() => {
+    if (status === 'idle') trackEvent('intake_step', { step, step_number: stepIndex + 1 })
+  }, [step, stepIndex, status])
 
   useEffect(() => {
     if (!hasNavigated.current) return
@@ -234,6 +238,12 @@ function StartProject() {
       hasNavigated.current = true
       setSubmittedName(contact.name?.trim().split(/\s+/)[0] ?? '')
       setStatus('sent')
+      trackLead('start_project', {
+        service: answers.service,
+        intent: isIdea ? 'idea' : 'project',
+        timeline: answers.timeline,
+        below_minimum: belowMinimum,
+      })
     } catch (submitError) {
       setErrorMessage(
         submitError instanceof Error ? submitError.message : 'Your request could not be submitted.',
@@ -589,7 +599,7 @@ function StartProject() {
 
       <section className="home_content__section home_content__section--alt">
         <div className="home_content__inner">
-          <div className="contact__card intake">
+          <div className="contact__card intake" data-clarity-mask="true">
             {status === 'sent' ? (
               <div className="contact-form__success" role="status">
                 <FaCircleCheck aria-hidden className="contact-form__success-icon" />

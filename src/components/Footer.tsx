@@ -122,7 +122,10 @@ function Footer() {
 
       <div className="footer__bottom">
         <p className="footer__copyright">
-          © {year} Everyday Tech LLC. All rights reserved.
+          © {year} Everyday Tech LLC. All rights reserved. ·{' '}
+          <Link to="/privacy" className="footer__link footer__legal">
+            Privacy policy
+          </Link>
         </p>
       </div>
     </footer>

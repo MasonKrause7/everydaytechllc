@@ -31,3 +31,16 @@
   font-size: 1.1rem;
   color: var(--color-text-muted);
 }
+
+.hero__actions.page__actions {
+  justify-content: flex-start;
+}
+
+.page__actions .hero__button--secondary {
+  color: var(--color-secondary);
+  border-color: rgba(59, 107, 255, 0.3);
+}
+
+.page__actions .hero__button--secondary:hover {
+  border-color: var(--color-secondary);
+}

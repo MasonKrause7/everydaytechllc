@@ -43,11 +43,10 @@ const paymentPlans: Record<string, string> = {
   'not-sure': 'Not sure yet',
 }
 
-const sourceKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'referrer']
+const sourceKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'referrer']
 
 const contactEmail = 'mason@everydaytechllc.com'
 const contactPhone = '(931) 551-6823'
-
 type ProjectRequest = {
   intent: 'project' | 'idea'
   service: string
@@ -214,8 +213,7 @@ function buildCustomerEmail(request: ProjectRequest) {
   const html = `
     <div style="font-family:system-ui,sans-serif;font-size:15px;line-height:1.6;color:#0a0f1f;">
       <p>Hi ${escapeHtml(firstName)},</p>
-      <p>Thanks for reaching out to Everyday Tech! We've received your ${request.intent === 'idea' ? 'idea' : 'project request'} and will review the details and get back to you within a day or two.</p>
-      <p>In the meantime, if your request is urgent or you'd like more info, feel free to ${reachOut}.</p>
+      <p>Thanks for reaching out to Everyday Tech! We've received your ${request.intent === 'idea' ? 'idea' : 'project request'} and will review the details and get back to you within a day or two.</p>      <p>In the meantime, if your request is urgent or you'd like more info, feel free to ${reachOut}.</p>
       <p>Talk soon,<br />Mason<br />Everyday Tech LLC</p>
     </div>`
 
@@ -223,8 +221,7 @@ function buildCustomerEmail(request: ProjectRequest) {
     `Hi ${firstName},`,
     '',
     `Thanks for reaching out to Everyday Tech! We've received your ${request.intent === 'idea' ? 'idea' : 'project request'} and will review the details and get back to you within a day or two.`,
-    '',
-    `In the meantime, if your request is urgent or you'd like more info, feel free to ${reachOut}.`,
+    '',    `In the meantime, if your request is urgent or you'd like more info, feel free to ${reachOut}.`,
     '',
     'Talk soon,',
     'Mason',

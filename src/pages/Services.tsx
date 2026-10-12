@@ -18,7 +18,7 @@ import {
   FaWandMagicSparkles,
 } from 'react-icons/fa6'
 import Faq, { type FaqItem } from '../components/Faq'
-import { contactEmail, contactPhone } from '../data/contactInfo'
+import { businessAddress, businessId, contactEmail, contactPhone } from '../data/contactInfo'
 import usePageMeta from '../hooks/usePageMeta'
 import faqStructuredData from '../utils/faqStructuredData'
 import '../styles/pages/Page.css'
@@ -50,7 +50,7 @@ const services: Service[] = [
     title: 'Websites that bring in customers',
     lead: 'For most customers, your website is their first impression of your organization. Whether they find you on Google, through a social post, or from a friend\'s recommendation, they look you up before they call, visit, or buy. A slow, outdated, or hard-to-use website quietly sends them to a competitor.',
     paragraphs: [
-      'We design and build custom websites for small businesses and organizations in Big Rapids, across West Michigan, and nationwide. Every site is written from scratch to fit your brand and your goals instead of being squeezed into a generic template. The result is a fast, mobile-friendly website that ranks well in search engines and makes it easy for visitors to take the next step, whether that means calling you, booking an appointment, requesting a quote, placing an order, or signing up for an event.',
+      'We design and build custom websites for small businesses and organizations in Big Rapids, Grand Rapids, across West Michigan, and nationwide. Every site is written from scratch to fit your brand and your goals instead of being squeezed into a generic template. The result is a fast, mobile-friendly website that ranks well in search engines and makes it easy for visitors to take the next step, whether that means calling you, booking an appointment, requesting a quote, placing an order, or signing up for an event.',
       'Unlike website builders that charge monthly fees forever and lock your content into their platform, you own your website outright. And unlike large agencies, you work directly with the engineer building it, so your project never gets lost in a chain of account managers.',
     ],
     included: [
@@ -257,6 +257,7 @@ const services: Service[] = [
 ]
 
 const serviceAreas = [
+  'Stanwood',
   'Big Rapids',
   'Grand Rapids',
   'Mount Pleasant',
@@ -269,6 +270,7 @@ const serviceAreas = [
   'Newaygo',
   'Mecosta County',
   'Osceola County',
+  'Kent County',
 ]
 
 const reasons: { icon: IconType; title: string; text: string }[] = [
@@ -311,7 +313,7 @@ const faqs: FaqItem[] = [
   },
   {
     question: 'Do you meet with clients in person?',
-    answer: 'Yes. We\'re based in Big Rapids, Michigan, and offer in-person consultations for businesses and organizations throughout West Michigan, including Grand Rapids, Mount Pleasant, Cadillac, Reed City, Ludington, and Muskegon. We\'re also happy to meet over video call.',
+    answer: 'Yes. We\'re based in Stanwood, Michigan, just south of Big Rapids, and offer in-person consultations for businesses and organizations throughout West Michigan, including Big Rapids, Grand Rapids, Mount Pleasant, Cadillac, Reed City, Ludington, and Muskegon. We\'re also happy to meet over video call.',
   },
   {
     question: 'Do you work with clients outside of Michigan?',
@@ -352,17 +354,13 @@ const structuredData = {
   '@graph': [
     {
       '@type': 'ProfessionalService',
+      '@id': businessId,
       name: 'Everyday Tech LLC',
       description:
-        'Custom websites, mobile apps, cloud data migrations, data analytics, and AI integrations for small businesses and organizations in Big Rapids, West Michigan, and nationwide, plus app development for individuals with app ideas.',
+        'Custom websites, mobile apps, cloud data migrations, data analytics, and AI integrations for small businesses and organizations in Big Rapids, Grand Rapids, West Michigan, and nationwide, plus app development for individuals with app ideas.',
       email: contactEmail,
       telephone: contactPhone.number,
-      address: {
-        '@type': 'PostalAddress',
-        addressLocality: 'Big Rapids',
-        addressRegion: 'MI',
-        addressCountry: 'US',
-      },
+      address: businessAddress,
       areaServed: [
         ...serviceAreas.map((name) => ({
           '@type': name.endsWith('County') ? 'AdministrativeArea' : 'City',
@@ -386,8 +384,8 @@ const structuredData = {
 
 function Services() {
   usePageMeta(
-    'Web Design & App Development in Big Rapids, MI | Everyday Tech',
-    'Custom websites, mobile apps, cloud data migrations, analytics, and AI for small businesses and organizations in Big Rapids and West Michigan. Free in-person consultations.',
+    'Web Design & App Development in Big Rapids & Grand Rapids, MI | Everyday Tech',
+    'Custom websites, mobile apps, cloud data migrations, analytics, and AI for small businesses and organizations in Big Rapids, Grand Rapids, and West Michigan. Free in-person consultations.',
   )
 
   return (
@@ -405,10 +403,10 @@ function Services() {
             <span className="home_content__highlight">West Michigan</span> small businesses
           </h1>
           <p className="page__intro">
-            Everyday Tech is a software company based in Big Rapids, Michigan. We build custom
-            websites, mobile apps, cloud databases, data analytics, and AI integrations for small
-            businesses and organizations, with free in-person consultations across West Michigan
-            and clients nationwide. Every solution is built from scratch, priced for smaller budgets,
+            Everyday Tech is a software company based in Stanwood, Michigan, just south of Big
+            Rapids. We build custom websites, mobile apps, cloud databases, data analytics, and AI
+            integrations for small businesses and organizations, with free in-person consultations
+            from Big Rapids to Grand Rapids and across West Michigan, plus clients nationwide. Every solution is built from scratch, priced for smaller budgets,
             and 100% owned by you. Not a business owner? If you have a great app idea, we'd love to
             hear it.
           </p>
@@ -487,7 +485,7 @@ function Services() {
         <div className="home_content__inner services-local__inner">
           <div>
             <p className="home_content__eyebrow services-local__eyebrow">
-              <FaLocationDot aria-hidden /> Big Rapids, Michigan
+              <FaLocationDot aria-hidden /> Stanwood, Michigan
             </p>
             <h2 className="home_content__title">
               Locally owned, proudly serving{' '}
@@ -496,8 +494,8 @@ function Services() {
             <p className="services-local__text">
               The best software comes from truly understanding your organization, and there's no
               substitute for sitting down together face to face. That's why we offer free
-              in-person consultations for businesses and organizations in Big Rapids and throughout
-              West Michigan. We'll meet you where it's convenient, learn how you operate, and
+              in-person consultations for businesses and organizations in Big Rapids, Grand Rapids,
+              and throughout West Michigan. We'll meet you where it's convenient, learn how you operate, and
               talk through what technology can do for you.
             </p>
             <p className="services-local__text">

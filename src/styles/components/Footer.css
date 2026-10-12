@@ -133,6 +133,10 @@
   color: var(--color-text-muted);
 }
 
+.footer__link.footer__legal {
+  font-size: inherit;
+}
+
 @media (max-width: 860px) {
   .footer__inner {
     grid-template-columns: 1fr 1fr;

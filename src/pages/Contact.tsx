@@ -10,6 +10,7 @@ import {
 } from 'react-icons/fa6'
 import { contactEmail, contactPhone } from '../data/contactInfo'
 import usePageMeta from '../hooks/usePageMeta'
+import { trackLead } from '../utils/analytics'
 import '../styles/pages/Page.css'
 import '../styles/pages/Home.css'
 import '../styles/pages/Contact.css'
@@ -18,7 +19,7 @@ type Status = 'idle' | 'sending' | 'sent' | 'error'
 
 function Contact() {
   usePageMeta(
-    'Contact Everyday Tech | Web & App Development in Big Rapids, MI',
+    'Contact Everyday Tech | Web & App Development in West Michigan',
     'Get in touch with Everyday Tech about a custom website, mobile app, or AI integration. Free consultations in person in West Michigan or over video.',
   )
 
@@ -43,6 +44,7 @@ function Contact() {
       }
       form.reset()
       setStatus('sent')
+      trackLead('contact')
     } catch (submitError) {
       setErrorMessage(
         submitError instanceof Error ? submitError.message : 'Your message could not be sent.',
@@ -86,7 +88,7 @@ function Contact() {
                 </button>
               </div>
             ) : (
-              <form className="contact-form" onSubmit={handleSubmit}>
+              <form className="contact-form" onSubmit={handleSubmit} data-clarity-mask="true">
                 <h2 className="contact__card-title">Send us a message</h2>
 
                 <div className="contact-form__row">
@@ -215,7 +217,9 @@ function Contact() {
                 </span>
                 <div>
                   <p className="contact__detail-label">In person</p>
-                  <p className="contact__text">Big Rapids and across West Michigan</p>
+                  <p className="contact__text">
+                    Stanwood, Big Rapids, Grand Rapids, and across West Michigan
+                  </p>
                 </div>
               </li>
               <li className="contact__detail">

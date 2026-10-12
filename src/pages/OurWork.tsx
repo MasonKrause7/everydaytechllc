@@ -1,25 +1,26 @@
 import axisPromo from '../assets/my-work/axis/axis-promo.mp4'
-import axisPromoPoster from '../assets/my-work/axis/axis-promo-poster.jpg'
-import busyBeeGroups from '../assets/my-work/busybee/busybee-groups.png'
-import busyBeeHome from '../assets/my-work/busybee/busybee-home.png'
-import busyBeeLogin from '../assets/my-work/busybee/busybee-login.png'
-import busyBeeStats from '../assets/my-work/busybee/busybee-stats.png'
-import giggleTalesAbout from '../assets/my-work/giggle-tales/giggle-tales-about.png'
-import giggleTalesLogin from '../assets/my-work/giggle-tales/giggle-tales.png'
-import giggleTalesPrompt from '../assets/my-work/giggle-tales/giggle-tales-prompt-screen.png'
-import giggleTalesGeneration from '../assets/my-work/giggle-tales/giggle-tales-story-generation.png'
-import giggleTalesStory from '../assets/my-work/giggle-tales/giggle-tales-story-screen.png'
-import queuelessCook from '../assets/my-work/queueless/queueless-cook-view.png'
-import queuelessCustomer from '../assets/my-work/queueless/queueless-customer-truck-view.png'
-import queuelessEmployees from '../assets/my-work/queueless/queueless-manage-employees.png'
-import queuelessTrucks from '../assets/my-work/queueless/queueless-manage-trucks.png'
-import sctCalendar from '../assets/my-work/sct/sct-calendar-screen.png'
-import sctCourses from '../assets/my-work/sct/sct-courses-screen.png'
-import sctSignIn from '../assets/my-work/sct/sct-signup-login-screen.png'
+import axisPromoPoster from '../assets/my-work/axis/axis-promo-poster.webp'
+import busyBeeGroups from '../assets/my-work/busybee/busybee-groups.webp'
+import busyBeeHome from '../assets/my-work/busybee/busybee-home.webp'
+import busyBeeLogin from '../assets/my-work/busybee/busybee-login.webp'
+import busyBeeStats from '../assets/my-work/busybee/busybee-stats.webp'
+import giggleTalesAbout from '../assets/my-work/giggle-tales/giggle-tales-about.webp'
+import giggleTalesLogin from '../assets/my-work/giggle-tales/giggle-tales.webp'
+import giggleTalesPrompt from '../assets/my-work/giggle-tales/giggle-tales-prompt-screen.webp'
+import giggleTalesGeneration from '../assets/my-work/giggle-tales/giggle-tales-story-generation.webp'
+import giggleTalesStory from '../assets/my-work/giggle-tales/giggle-tales-story-screen.webp'
+import queuelessCook from '../assets/my-work/queueless/queueless-cook-view.webp'
+import queuelessCustomer from '../assets/my-work/queueless/queueless-customer-truck-view.webp'
+import queuelessEmployees from '../assets/my-work/queueless/queueless-manage-employees.webp'
+import queuelessTrucks from '../assets/my-work/queueless/queueless-manage-trucks.webp'
+import sctCalendar from '../assets/my-work/sct/sct-calendar-screen.webp'
+import sctCourses from '../assets/my-work/sct/sct-courses-screen.webp'
+import sctSignIn from '../assets/my-work/sct/sct-signup-login-screen.webp'
 import sctDemo from '../assets/my-work/sct/sct-demo-vid.mp4'
-import sctDemoPoster from '../assets/my-work/sct/sct-demo-vid-poster.jpg'
+import sctDemoPoster from '../assets/my-work/sct/sct-demo-vid-poster.webp'
 import { Link } from 'react-router'
 import ProjectGallery, { type Media } from '../components/ProjectGallery'
+import usePageMeta from '../hooks/usePageMeta'
 import '../styles/pages/Page.css'
 import '../styles/pages/Home.css'
 import '../styles/pages/OurWork.css'
@@ -40,7 +41,7 @@ const projects: Project[] = [
     title: 'SCT Training',
     category: 'Full Tech Suite',
     description:
-      'A national platform for distributing concealed carry curriculum materials to licensed instructors. We built a full tech suite around SCT\'s business model, including an API that serves their website, mobile apps, database, and AI integrations. Users can seamlessly manage their course subscriptions through the web or the mobile app, while instructors maintain their schedule and learn how to teach new courses. This tech suite accomodates a complex and unique business model and represents our ability to bring truly customized solutions to small businesses.',
+      'A national platform for distributing concealed carry curriculum materials to licensed instructors. We built a full tech suite around SCT\'s business model, including an API that serves their website, mobile apps, database, and AI integrations. Users can seamlessly manage their course subscriptions on the web or in the mobile app, while instructors manage their schedules and learn how to teach new courses. This tech suite supports a complex, unique business model and shows our ability to bring truly custom solutions to small businesses.',
     tags: ['API', 'Distributed System', 'iOS', 'Android'],
     images: [
       { src: sctSignIn, alt: 'Branded sign in and account creation' },
@@ -59,7 +60,7 @@ const projects: Project[] = [
     title: 'Axis',
     category: 'Mobile App',
     description:
-      'An alternative grading solution for state university STEM programs. This app (available for iOS/Android) provides a platform for college professors to manage "Standards based grading", an alternative grading approach used in rigorous math and engineering courses. Through the app, professors have an easy way to enter and track a students progress, and students get real time updates and feedback.',
+      'An alternative grading solution for state university STEM programs. Available on iOS and Android, the app gives college professors a platform to manage standards-based grading, an alternative grading approach used in rigorous math and engineering courses. Professors get an easy way to record and track each student\'s progress, and students get real-time updates and feedback.',
     tags: ['Educational', 'iOS', 'Android'],
     images: [
       { src: axisPromo, alt: 'Axis app promo video', type: 'video', poster: axisPromoPoster },
@@ -70,7 +71,7 @@ const projects: Project[] = [
     title: 'Busy Bee',
     category: 'Web App',
     description:
-      'This app was built to simplify the job search process for job seekers. Through the app, a user can keep track of the status of multiple open job applications, even if they are submitted through different platforms such as LinkedIn, Indeed, Glassdoor, etc. This gives users a consolidated dashboard to automate follow ups and track analytics to optimize their process.',
+      'Busy Bee simplifies the job search. Job seekers can track the status of all of their open applications in one place, even when they apply through different platforms like LinkedIn, Indeed, and Glassdoor. The consolidated dashboard automates follow-ups and tracks analytics so users can improve their approach over time.',
     tags: ['Authentication', 'Individual Efficiency'],
     images: [
       { src: busyBeeHome, alt: 'Dashboard of recent applications and stats' },
@@ -84,7 +85,7 @@ const projects: Project[] = [
     title: 'Giggle Tales',
     category: 'Web App',
     description:
-      'Giggle Tales is an app available online that leverages generative AI to help children create story books based on their ideas. Anyone can simply enter their idea for a story, wait a few minutes, and have a book generated with illustrations. We want to promote reading and eliminate the need for families to spend money buying books to get their child a variety of reading material. Giggle tales allows you to configure your childs reading level, story length, etc, so that your child gets engaging stories based on their original ideas that help them progress.',
+      'Giggle Tales is a web app that uses generative AI to help children turn their own ideas into illustrated story books. Just enter an idea for a story, wait a few minutes, and get a complete book with illustrations. The goal is to promote reading and give families a variety of reading material without having to keep buying new books. Parents can set their child\'s reading level, story length, and more, so every story is engaging and helps their child progress.',
     tags: ['Authentication', 'Gen AI Integration', 'Educational'],
     images: [
       { src: giggleTalesAbout, alt: 'Meet the team behind Giggle Tales' },
@@ -99,7 +100,7 @@ const projects: Project[] = [
     title: 'Queue-less',
     category: 'Web App',
     description:
-      'The goal of queue-less is to eliminate the need to stand in line. We believe technology has advanced enough that waiting in line should be a thing of the past. This initial solution was built for food trucks, enabling customers to scan a QR code on their truck and place an order on their phone and receive an alert when its ready, rather than waiting in line to place an order and waiting to have their name called once its ready.',
+      'Queue-less is built to eliminate waiting in line. We believe technology has come far enough that lines should be a thing of the past. The first version was built for food trucks: customers scan a QR code on the truck, place their order on their phone, and get an alert when it\'s ready, instead of waiting in line to order and then waiting again for their name to be called.',
     tags: ['Business Efficiency', 'Reusable Software'],
     images: [
       { src: queuelessTrucks, alt: 'Manager dashboard for trucks and QR codes' },
@@ -111,6 +112,11 @@ const projects: Project[] = [
 ]
 
 function OurWork() {
+  usePageMeta(
+    'Our Work | Websites, Web Apps & Mobile Apps | Everyday Tech',
+    'See the web apps, iOS and Android apps, and AI integrations Everyday Tech has built, including SCT Training, Axis, Busy Bee, Giggle Tales, and Queue-less.',
+  )
+
   return (
     <>
       <section className="page work-header">
@@ -120,8 +126,7 @@ function OurWork() {
             Projects we've <span className="home_content__highlight">built</span>
           </h1>
           <p className="page__intro">
-            A selection of websites, apps, and integrations we've delivered for our
-            clients.
+            A selection of the websites, apps, and integrations we've built.
           </p>
           <nav className="work-nav" aria-label="Projects">
             {projects.map(({ id, title }) => (

@@ -1,10 +1,16 @@
-import familyPhoto from '../assets/about/family.jpg'
-import headshot from '../assets/about/mason-headshot.jpg'
-import masonLenoxPhoto from '../assets/about/mason-lenox.jpg'
+import familyPhoto from '../assets/about/family.webp'
+import headshot from '../assets/about/mason-headshot.webp'
+import masonLenoxPhoto from '../assets/about/mason-lenox.webp'
+import usePageMeta from '../hooks/usePageMeta'
 import '../styles/pages/Page.css'
 import '../styles/pages/About.css'
 
 function About() {
+  usePageMeta(
+    'About Mason Krause | Everyday Tech | Stanwood, MI',
+    'Everyday Tech was founded by Mason Krause, a US Army veteran and former Amazon software engineer, to bring big-tech engineering to small businesses and organizations.',
+  )
+
   return (
     <section className="page">
       <div className="page__inner">
@@ -16,10 +22,12 @@ function About() {
 
         <div className="about__story">
           <p>
-            I'm Mason Krause, a US Army veteran and the founder of Everyday Tech. After four years as an Infantryman, I attended Austin Peay State University in Clarksville, Tennessee to earn my bachelors in Computer Science.
-            I joined Amazon straight out of college as a software engineer and helped build some of the first AI-powered
-            tools in Amazon Advertising. The code I wrote supports features that bring in billions
-            of dollars in ad revenue each year.
+            I'm Mason Krause, a US Army veteran and the founder of Everyday Tech. After four years
+            as an infantryman, I attended Austin Peay State University in Clarksville, Tennessee,
+            where I earned my bachelor's degree in Computer Science. I joined Amazon straight out of
+            college as a software engineer and helped build some of the first AI-powered tools in
+            Amazon Advertising. The code I wrote supports features that bring in billions of dollars
+            in ad revenue each year.
           </p>
           <p>
             That was good experience, but adding value to a company that size never felt like it

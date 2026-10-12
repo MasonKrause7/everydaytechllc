@@ -12,6 +12,7 @@ import {
   FaRobot,
 } from 'react-icons/fa6'
 import Faq, { type FaqItem } from '../components/Faq'
+import { businessAddress, businessId } from '../data/contactInfo'
 import usePageMeta from '../hooks/usePageMeta'
 import faqStructuredData from '../utils/faqStructuredData'
 import '../styles/pages/Page.css'
@@ -67,7 +68,7 @@ const tierGroups: TierGroup[] = [
         service: '3-page-website',
         min: 650,
         max: 1000,
-        badge: 'A good starting point to gain visibility',
+        badge: 'Great for local visibility',
         summary: 'A clean landing page that captures attention and makes a strong first impression, plus room for the content that helps you rank on Google.',
         features: [
           'Up to 3 custom pages, such as Home, Services, and About',
@@ -309,13 +310,9 @@ const structuredData = {
           },
           seller: {
             '@type': 'ProfessionalService',
+            '@id': businessId,
             name: 'Everyday Tech LLC',
-            address: {
-              '@type': 'PostalAddress',
-              addressLocality: 'Big Rapids',
-              addressRegion: 'MI',
-              addressCountry: 'US',
-            },
+            address: businessAddress,
           },
         })),
       ),
@@ -326,7 +323,7 @@ const structuredData = {
 
 function Pricing() {
   usePageMeta(
-    'Custom Website & App Pricing | Big Rapids, MI | Everyday Tech',
+    'Custom Website & App Pricing | West Michigan | Everyday Tech',
     'How much does a custom website cost? See starting prices for websites, web apps, mobile apps, SEO, and AI integrations, plus flexible payment plans.',
   )
 
@@ -346,8 +343,8 @@ function Pricing() {
           </h1>
           <p className="page__intro">
             Most web developers make you book a call before they'll talk about price. We think you
-            deserve a straight answer. Here's what small businesses in Big Rapids, across West
-            Michigan, and nationwide can expect to invest in a custom website, app, SEO, or AI
+            deserve a straight answer. Here's what small businesses in Big Rapids, Grand Rapids,
+            across West Michigan, and nationwide can expect to invest in a custom website, app, SEO, or AI
             integration with Everyday Tech.
           </p>
           <div className="pricing-note">

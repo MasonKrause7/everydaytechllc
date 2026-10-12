@@ -439,7 +439,6 @@
 .home_content__cta .hero__button {
   margin-top: 32px;
 }
-
 @media (prefers-reduced-motion: reduce) {
   .home_content__card,
   .home_content__card::before {

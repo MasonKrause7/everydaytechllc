@@ -199,7 +199,6 @@
 .contact__project-link:hover {
   color: var(--color-accent);
 }
-
 @media (prefers-reduced-motion: reduce) {
   .contact-form__input {
     transition: none;

@@ -188,9 +188,14 @@ function OurWork() {
             Book a free consultation and we'll talk through your goals and recommend the right
             solution for your budget.
           </p>
-          <Link to="/start-project" className="hero__button hero__button--primary">
-            Start a project
-          </Link>
+          <div className="hero__actions">
+            <Link to="/book" className="hero__button hero__button--primary">
+              Book a free consultation
+            </Link>
+            <Link to="/start-project" className="hero__button hero__button--secondary">
+              Start a project
+            </Link>
+          </div>
         </div>
       </section>
     </>

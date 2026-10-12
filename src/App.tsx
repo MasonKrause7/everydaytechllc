@@ -6,12 +6,14 @@ import Footer from './components/Footer'
 import Navbar from './components/Navbar'
 import { useTextureAlignment } from './hooks/useTextureAlignment'
 import About from './pages/About'
+import Book from './pages/Book'
 import Contact from './pages/Contact'
 import Home from './pages/Home'
 import NotFound from './pages/NotFound'
 import OurWork from './pages/OurWork'
 import Pricing from './pages/Pricing'
 import Privacy from './pages/Privacy'
+import ProjectUpdate from './pages/ProjectUpdate'
 import Services from './pages/Services'
 import StartProject from './pages/StartProject'
 import { trackPageView } from './utils/analytics'
@@ -42,6 +44,8 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/start-project" element={<StartProject key={search} />} />
+          <Route path="/book" element={<Book />} />
+          <Route path="/project-update" element={<ProjectUpdate />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

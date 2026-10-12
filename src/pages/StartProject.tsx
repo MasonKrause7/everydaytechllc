@@ -7,8 +7,10 @@ import {
   FaEnvelope,
   FaPhone,
 } from 'react-icons/fa6'
+import BookingCalendar from '../components/BookingCalendar'
 import usePageMeta from '../hooks/usePageMeta'
 import { trackEvent, trackLead } from '../utils/analytics'
+import { consultationCalLink } from '../data/booking'
 import { contactEmail, contactPhone } from '../data/contactInfo'
 import {
   findOption,
@@ -151,7 +153,7 @@ function StartProject() {
   const [source] = useState(() => readSource(searchParams))
   const [status, setStatus] = useState<Status>('idle')
   const [errorMessage, setErrorMessage] = useState('')
-  const [submittedName, setSubmittedName] = useState('')
+  const [submitted, setSubmitted] = useState({ name: '', email: '' })
 
   const advanceTimer = useRef<number | undefined>(undefined)
   const headingRef = useRef<HTMLHeadingElement>(null)
@@ -161,6 +163,12 @@ function StartProject() {
   const stepIndex = Math.max(steps.indexOf(step), 0)
   const isIdea = answers.stage === 'idea'
   const belowMinimum = isBelowMinimum(answers)
+  const firstName = submitted.name.split(/\s+/)[0]
+  const serviceLabel =
+    answers.service === 'something-else'
+      ? answers.serviceOther
+      : findOption(serviceOptions, answers.service)?.label
+
   useEffect(() => () => window.clearTimeout(advanceTimer.current), [])
 
   useEffect(() => {
@@ -236,7 +244,7 @@ function StartProject() {
         throw new Error(data.error ?? 'Your request could not be submitted.')
       }
       hasNavigated.current = true
-      setSubmittedName(contact.name?.trim().split(/\s+/)[0] ?? '')
+      setSubmitted({ name: contact.name?.trim() ?? '', email: contact.email?.trim() ?? '' })
       setStatus('sent')
       trackLead('start_project', {
         service: answers.service,
@@ -604,12 +612,22 @@ function StartProject() {
               <div className="contact-form__success" role="status">
                 <FaCircleCheck aria-hidden className="contact-form__success-icon" />
                 <h2 className="contact__card-title intake__title" ref={headingRef} tabIndex={-1}>
-                  Thanks{submittedName ? `, ${submittedName}` : ''}! We've received your request.
+                  Thanks{firstName ? `, ${firstName}` : ''}! We've received your request.
                 </h2>
                 <p className="contact__text">
-                  We'll review the details and get back to you within a day or two. In the
-                  meantime, if your request is urgent or you'd like more info, feel free to call,
-                  text, or send a quick email.
+                  Pick a time below for your free consultation by video, phone, or in person, and
+                  we'll review your details before we meet. Not ready to schedule? We'll reach out
+                  within a day or two.
+                </p>
+                <BookingCalendar
+                  calLink={consultationCalLink}
+                  name={submitted.name}
+                  email={submitted.email}
+                  notes={serviceLabel && `Project request: ${serviceLabel}`}
+                />
+                <p className="contact__text">
+                  If your request is urgent or you'd like more info, feel free to call, text, or
+                  send a quick email.
                 </p>
                 <ul className="contact__details intake__reach">
                   <li className="contact__detail">

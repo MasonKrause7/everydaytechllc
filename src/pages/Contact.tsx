@@ -232,8 +232,14 @@ function Contact() {
                 </div>
               </li>
             </ul>
+            <Link to="/book" className="contact__project-link">
+              Book a free consultation <FaArrowRight aria-hidden />
+            </Link>
             <Link to="/start-project" className="contact__project-link">
               Ready to start a project? <FaArrowRight aria-hidden />
+            </Link>
+            <Link to="/project-update" className="contact__project-link">
+              Current client? Book a project update <FaArrowRight aria-hidden />
             </Link>
           </aside>
         </div>

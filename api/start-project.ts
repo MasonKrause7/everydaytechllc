@@ -47,6 +47,8 @@ const sourceKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm
 
 const contactEmail = 'mason@everydaytechllc.com'
 const contactPhone = '(931) 551-6823'
+const bookingUrl = 'https://www.everydaytechllc.com/book'
+
 type ProjectRequest = {
   intent: 'project' | 'idea'
   service: string
@@ -213,7 +215,9 @@ function buildCustomerEmail(request: ProjectRequest) {
   const html = `
     <div style="font-family:system-ui,sans-serif;font-size:15px;line-height:1.6;color:#0a0f1f;">
       <p>Hi ${escapeHtml(firstName)},</p>
-      <p>Thanks for reaching out to Everyday Tech! We've received your ${request.intent === 'idea' ? 'idea' : 'project request'} and will review the details and get back to you within a day or two.</p>      <p>In the meantime, if your request is urgent or you'd like more info, feel free to ${reachOut}.</p>
+      <p>Thanks for reaching out to Everyday Tech! We've received your ${request.intent === 'idea' ? 'idea' : 'project request'} and will review the details and get back to you within a day or two.</p>
+      <p>If you haven't already, you can <a href="${bookingUrl}" style="color:#3b6bff;font-weight:600;">pick a time for your free consultation</a> by video, phone, or in person.</p>
+      <p>In the meantime, if your request is urgent or you'd like more info, feel free to ${reachOut}.</p>
       <p>Talk soon,<br />Mason<br />Everyday Tech LLC</p>
     </div>`
 
@@ -221,7 +225,10 @@ function buildCustomerEmail(request: ProjectRequest) {
     `Hi ${firstName},`,
     '',
     `Thanks for reaching out to Everyday Tech! We've received your ${request.intent === 'idea' ? 'idea' : 'project request'} and will review the details and get back to you within a day or two.`,
-    '',    `In the meantime, if your request is urgent or you'd like more info, feel free to ${reachOut}.`,
+    '',
+    `If you haven't already, you can pick a time for your free consultation by video, phone, or in person: ${bookingUrl}`,
+    '',
+    `In the meantime, if your request is urgent or you'd like more info, feel free to ${reachOut}.`,
     '',
     'Talk soon,',
     'Mason',

@@ -31,7 +31,7 @@ function handleClick(event: MouseEvent) {
 
   if (href.startsWith('tel:')) trackEvent('contact_click', { method: 'phone', page })
   else if (href.startsWith('mailto:')) trackEvent('contact_click', { method: 'email', page })
-  else if (href.startsWith('/start-project')) trackEvent('cta_click', { label, destination: href, page })
+  else if (/^\/(start-project|book|project-update)/.test(href)) trackEvent('cta_click', { label, destination: href, page })
 }
 
 export function initAnalytics() {
@@ -75,7 +75,7 @@ export function trackEvent(name: string, params: EventParams = {}) {
   window.clarity?.('event', name)
 }
 
-export function trackLead(form: 'contact' | 'start_project', params: EventParams = {}) {
+export function trackLead(form: 'contact' | 'start_project' | 'booking', params: EventParams = {}) {
   trackEvent('generate_lead', { form, ...params })
   if (enabled && adsId && adsLeadLabel) {
     window.gtag?.('event', 'conversion', { send_to: `${adsId}/${adsLeadLabel}` })

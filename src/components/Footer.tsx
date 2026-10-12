@@ -40,6 +40,8 @@ const columns = [
       { to: '/about', label: 'About' },
       { to: '/contact', label: 'Contact' },
       { to: '/start-project', label: 'Start a project' },
+      { to: '/book', label: 'Book a consultation' },
+      { to: '/project-update', label: 'Client project update' },
     ],
   },
 ]

@@ -439,6 +439,15 @@
 .home_content__cta .hero__button {
   margin-top: 32px;
 }
+
+.home_content__cta .hero__actions {
+  margin-top: 32px;
+}
+
+.home_content__cta .hero__actions .hero__button {
+  margin-top: 0;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .home_content__card,
   .home_content__card::before {

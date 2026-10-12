@@ -199,6 +199,16 @@
 .contact__project-link:hover {
   color: var(--color-accent);
 }
+
+.contact__aside .contact__project-link {
+  display: flex;
+  width: fit-content;
+}
+
+.contact__project-link + .contact__project-link {
+  margin-top: 12px;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .contact-form__input {
     transition: none;

@@ -218,9 +218,14 @@ function Home() {
               Schedule your free initial consultation today, in person anywhere from Big Rapids to
               Grand Rapids or over video anywhere in the US. We'd love to hear your ideas :)
             </p>
-            <Link to="/start-project" className="hero__button hero__button--primary">
-              Get started for free
-            </Link>
+            <div className="hero__actions">
+              <Link to="/book" className="hero__button hero__button--primary">
+                Book a free consultation
+              </Link>
+              <Link to="/start-project" className="hero__button hero__button--secondary">
+                Start a project
+              </Link>
+            </div>
           </div>
         </div>
       </section>

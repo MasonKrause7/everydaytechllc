@@ -264,13 +264,19 @@
   position: relative;
 }
 
-.home_content__step:not(:last-child)::after {
+.home_content__step::after {
   content: '';
   position: absolute;
   top: 26px;
   right: -14px;
   left: 72px;
   border-top: 2px dashed rgba(126, 59, 255, 0.45);
+}
+
+/* The last step's line keeps going off-screen to suggest ongoing support. */
+.home_content__step:last-child::after {
+  right: -50vw;
+  mask-image: linear-gradient(to right, #000 20%, transparent 70%);
 }
 
 .home_content__step-number {
@@ -473,7 +479,7 @@
   }
 
   .home_content__section::after,
-  .home_content__step:not(:last-child)::after,
+  .home_content__step::after,
   .home_content__cta::before {
     display: none;
   }

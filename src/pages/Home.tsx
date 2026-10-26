@@ -57,8 +57,8 @@ function Home() {
                   Custom software used to take a whole team to build, and it cost too much for the
                   average small business or local organization. We remove that barrier with tailored
                   solutions that fit your needs and your budget, plus flexible payment plans so your
-                  organization can start growing right away. Everything is built from scratch: we
-                  write the code, and you own it outright.
+                  organization can start growing right away. Everything is built from scratch, and
+                  the code we write for you becomes yours.
                 </p>
               </div>
               <figure className="home_content__photo home_content__photo--framed">

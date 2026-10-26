@@ -14,7 +14,7 @@ function Privacy() {
       <div className="page__inner privacy">
         <p className="page__eyebrow">Privacy</p>
         <h1 className="page__title">Privacy policy</h1>
-        <p className="page__intro">Effective October 12, 2026</p>
+        <p className="page__intro">Effective October 25, 2026</p>
 
         <h2>Information you give us</h2>
         <p>
@@ -41,6 +41,15 @@ function Privacy() {
             lead to inquiries. You can opt out with the{' '}
             <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noreferrer">
               Google Analytics opt-out browser add-on
+            </a>
+            .
+          </li>
+          <li>
+            <strong>Meta Pixel</strong> uses cookies to measure how people who see our ads on
+            Facebook and Instagram use this site, and whether they contact us, so we can improve
+            our advertising. You can adjust how Meta uses this data in your{' '}
+            <a href="https://www.facebook.com/adpreferences" target="_blank" rel="noreferrer">
+              Facebook ad preferences
             </a>
             .
           </li>

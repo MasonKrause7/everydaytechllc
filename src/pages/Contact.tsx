@@ -11,6 +11,7 @@ import {
 import { contactEmail, contactPhone } from '../data/contactInfo'
 import usePageMeta from '../hooks/usePageMeta'
 import { trackLead } from '../utils/analytics'
+import { getAttribution } from '../utils/attribution'
 import '../styles/pages/Page.css'
 import '../styles/pages/Home.css'
 import '../styles/pages/Contact.css'
@@ -36,7 +37,7 @@ function Contact() {
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(Object.fromEntries(new FormData(form))),
+        body: JSON.stringify({ ...Object.fromEntries(new FormData(form)), source: getAttribution() }),
       })
       if (!response.ok) {
         const data: { error?: string } = await response.json().catch(() => ({}))

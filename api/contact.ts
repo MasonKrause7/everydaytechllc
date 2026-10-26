@@ -22,7 +22,30 @@ const labels: Record<keyof ContactFields, string> = {
   message: 'Message',
 }
 
+const sourceKeys = [
+  'utm_source',
+  'utm_medium',
+  'utm_campaign',
+  'utm_term',
+  'utm_content',
+  'gclid',
+  'gbraid',
+  'wbraid',
+  'fbclid',
+  'msclkid',
+  'referrer',
+  'landing_page',
+]
+
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+function parseSource(value: unknown): [string, string][] {
+  if (typeof value !== 'object' || value === null) return []
+  return sourceKeys.flatMap((key): [string, string][] => {
+    const entry = (value as Record<string, unknown>)[key]
+    return typeof entry === 'string' && entry.trim() ? [[key, entry.trim().slice(0, 500)]] : []
+  })
+}
 
 const escapeHtml = (value: string) =>
   value.replace(/[&<>"']/g, (char) => `&#${char.charCodeAt(0)};`)
@@ -57,12 +80,17 @@ function parseFields(body: Record<string, unknown>): ContactFields | string {
   return fields
 }
 
-function buildEmail(fields: ContactFields) {
-  const rows = (['name', 'email', 'phone', 'company'] as const)
-    .filter((key) => fields[key])
+function buildEmail(fields: ContactFields, source: [string, string][]) {
+  const details: [string, string][] = [
+    ...(['name', 'email', 'phone', 'company'] as const)
+      .filter((key) => fields[key])
+      .map((key): [string, string] => [labels[key], fields[key]]),
+    ...source,
+  ]
+  const rows = details
     .map(
-      (key) =>
-        `<tr><td style="padding:4px 16px 4px 0;color:#4a5068;">${labels[key]}</td><td style="padding:4px 0;">${escapeHtml(fields[key])}</td></tr>`,
+      ([label, value]) =>
+        `<tr><td style="padding:4px 16px 4px 0;color:#4a5068;">${label}</td><td style="padding:4px 0;">${escapeHtml(value)}</td></tr>`,
     )
     .join('')
 
@@ -75,9 +103,7 @@ function buildEmail(fields: ContactFields) {
     </div>`
 
   const text = [
-    ...(['name', 'email', 'phone', 'company'] as const)
-      .filter((key) => fields[key])
-      .map((key) => `${labels[key]}: ${fields[key]}`),
+    ...details.map(([label, value]) => `${label}: ${value}`),
     '',
     fields.message,
   ].join('\n')
@@ -117,7 +143,7 @@ export default {
       return error(fields, 400)
     }
 
-    const { html, text } = buildEmail(fields)
+    const { html, text } = buildEmail(fields, parseSource((body as Record<string, unknown>).source))
     const response = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {

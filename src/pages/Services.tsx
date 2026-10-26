@@ -51,7 +51,7 @@ const services: Service[] = [
     lead: 'For most customers, your website is their first impression of your organization. Whether they find you on Google, through a social post, or from a friend\'s recommendation, they look you up before they call, visit, or buy. A slow, outdated, or hard-to-use website quietly sends them to a competitor.',
     paragraphs: [
       'We design and build custom websites for small businesses and organizations in Big Rapids, Grand Rapids, across West Michigan, and nationwide. Every site is written from scratch to fit your brand and your goals instead of being squeezed into a generic template. The result is a fast, mobile-friendly website that ranks well in search engines and makes it easy for visitors to take the next step, whether that means calling you, booking an appointment, requesting a quote, placing an order, or signing up for an event.',
-      'Unlike website builders that charge monthly fees forever and lock your content into their platform, you own your website outright. And unlike large agencies, you work directly with the engineer building it, so your project never gets lost in a chain of account managers.',
+      'Instead of a large upfront bill, our website plans start at $65 a month with nothing due up front, and they include hosting and ongoing updates. Unlike website builders that lock your content into their platform forever, your website and its code become yours after 12 monthly payments. And unlike large agencies, you work directly with the engineer building it, so your project never gets lost in a chain of account managers.',
     ],
     included: [
       'Custom design that matches your brand',
@@ -68,9 +68,9 @@ const services: Service[] = [
       'Get found by customers searching on Google',
       'Earn trust with a professional first impression',
       'Turn visitors into calls, bookings, and sales',
-      'Stop renting a template you will never own',
+      'Own your website instead of renting a template forever',
     ],
-    pricing: 'Websites start around $400',
+    pricing: 'Website plans start at $65/month',
     pricingAnchor: 'websites',
   },
   {
@@ -100,7 +100,7 @@ const services: Service[] = [
       'Stand out from competitors who don\'t have an app',
       'Learn what your customers want from real usage data',
     ],
-    pricing: 'Mobile apps start around $1,500',
+    pricing: 'Custom quote after a free consultation',
     pricingAnchor: 'apps',
     intakeQuery: '?service=mobile-app',
     proof: 'See the iOS and Android apps we built for SCT Training and Axis',
@@ -189,7 +189,7 @@ const services: Service[] = [
       'Respond to new leads faster than your competitors',
       'Get more done without adding staff',
     ],
-    pricing: 'AI integrations start around $2,000',
+    pricing: 'Custom quote after a free consultation',
     pricingAnchor: 'seo-ai',
     intakeQuery: '?service=ai-integration',
     proof: 'See how Giggle Tales uses generative AI to create illustrated story books',
@@ -250,7 +250,7 @@ const services: Service[] = [
       'Have one trusted partner for all of your tech',
       'Start with a free consultation to find the right fit',
     ],
-    pricing: 'Standalone SEO starts around $500',
+    pricing: 'Custom quote after a free consultation',
     pricingAnchor: 'seo-ai',
     proof: 'See how Queue-less replaced the food truck line with QR code ordering',
   },
@@ -287,7 +287,7 @@ const reasons: { icon: IconType; title: string; text: string }[] = [
   {
     icon: FaHandHoldingDollar,
     title: 'Flexible payments',
-    text: 'Custom software shouldn\'t require a massive upfront investment. Pay half when we sign and half at delivery, or split your project into as many as 8 payments.',
+    text: 'Custom software shouldn\'t require a massive upfront investment. Websites start with $0 down on a monthly plan, and for larger projects we\'ll work out a payment arrangement that fits your situation.',
   },
   {
     icon: FaComments,
@@ -309,7 +309,7 @@ const reasons: { icon: IconType; title: string; text: string }[] = [
 const faqs: FaqItem[] = [
   {
     question: 'How much does a custom website or app cost?',
-    answer: 'Single-page websites start around $400, multi-page websites around $650, web apps around $1,000, and mobile apps around $1,500. Every project is different, so final pricing depends on the time and complexity involved, and we give you a clear quote after a free consultation, before any work begins. Our pricing page has a full breakdown, including our flexible payment plans.',
+    answer: 'Website plans start at $65 a month with $0 down. Web apps, mobile apps, and other custom projects are quoted individually, since the price depends on the time and complexity involved. We give you a clear quote after a free consultation, before any work begins, and we\'re open to flexible payment arrangements. Our pricing page has the details, or you can call us to talk it through.',
   },
   {
     question: 'Do you meet with clients in person?',

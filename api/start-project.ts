@@ -1,7 +1,6 @@
 // Option ids must stay in sync with src/data/projectIntake.ts.
 const services: Record<string, string> = {
-  'single-page-website': 'Single-page website',
-  '3-page-website': '3-page website',
+  'website-plan': 'Website (monthly plan)',
   'web-app': 'Web app',
   'mobile-app': 'Mobile app',
   'full-tech-suite': 'Full tech suite',
@@ -37,13 +36,28 @@ const timelines: Record<string, string> = {
 }
 
 const paymentPlans: Record<string, string> = {
-  standard: 'Standard (2 payments)',
-  split: 'Split (4 payments)',
-  extended: 'Extended (up to 8 payments)',
+  upfront: 'Pay in full',
+  standard: 'Half and half (50% to start, 50% on delivery)',
+  split: 'Spread it out (several payments)',
+  '12-month': 'Website: 12-month plan ($65/month, $0 down)',
+  'month-to-month': 'Website: month-to-month ($79/month + $250 setup)',
   'not-sure': 'Not sure yet',
 }
 
-const sourceKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'referrer']
+const sourceKeys = [
+  'utm_source',
+  'utm_medium',
+  'utm_campaign',
+  'utm_term',
+  'utm_content',
+  'gclid',
+  'gbraid',
+  'wbraid',
+  'fbclid',
+  'msclkid',
+  'referrer',
+  'landing_page',
+]
 
 const contactEmail = 'mason@everydaytechllc.com'
 const contactPhone = '(931) 551-6823'
@@ -150,7 +164,9 @@ function parseRequest(body: Record<string, unknown>): ProjectRequest | string {
 }
 
 const formatBudget = (request: ProjectRequest) =>
-  request.budget_amount === null
+  request.service === 'website-plan'
+    ? 'Monthly website plan'
+    : request.budget_amount === null
     ? 'Not sure yet'
     : `$${request.budget_amount.toLocaleString('en-US')}`
 

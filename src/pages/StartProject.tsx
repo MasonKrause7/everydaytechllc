@@ -10,15 +10,18 @@ import {
 import BookingCalendar from '../components/BookingCalendar'
 import usePageMeta from '../hooks/usePageMeta'
 import { trackEvent, trackLead } from '../utils/analytics'
+import { getAttribution } from '../utils/attribution'
 import { consultationCalLink } from '../data/booking'
 import { contactEmail, contactPhone } from '../data/contactInfo'
 import {
   findOption,
   industryOptions,
+  legacyServiceIds,
   paymentPlanOptions,
   serviceOptions,
   stageOptions,
   timelineOptions,
+  websitePlanOptions,
   type Option,
 } from '../data/projectIntake'
 import '../styles/pages/Page.css'
@@ -32,7 +35,6 @@ type StepId =
   | 'details'
   | 'timeline'
   | 'budget'
-  | 'flexible'
   | 'payment'
   | 'contact'
 
@@ -45,23 +47,23 @@ type Answers = {
   timeline: string
   budget: string
   budgetUnsure: boolean
-  openToFlexible: boolean
-  businessContext: string
   paymentPlan: string
 }
 
 type Status = 'idle' | 'sending' | 'sent' | 'error'
 
 const autoAdvanceDelay = 220
-const sourceParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content']
+
+const isMonthlyPlan = (answers: Answers) =>
+  findOption(serviceOptions, answers.service)?.monthlyPlan === true
 
 const budgetAmount = (answers: Answers) =>
-  answers.budgetUnsure ? null : Number(answers.budget) || null
+  answers.budgetUnsure || isMonthlyPlan(answers) ? null : Number(answers.budget) || null
 
-function isBelowMinimum(answers: Answers) {
-  const startingPrice = findOption(serviceOptions, answers.service)?.startingPrice
-  const amount = budgetAmount(answers)
-  return startingPrice !== undefined && amount !== null && amount < startingPrice
+function initialService(param: string | null) {
+  const id = legacyServiceIds[param ?? ''] ?? param ?? ''
+  const option = findOption(serviceOptions, id)
+  return option && !option.openEnded ? id : ''
 }
 
 function getSteps(answers: Answers, stageLocked: boolean): StepId[] {
@@ -70,22 +72,10 @@ function getSteps(answers: Answers, stageLocked: boolean): StepId[] {
     ...(stageLocked ? [] : (['stage'] as const)),
     'details',
     'timeline',
-    'budget',
-    isBelowMinimum(answers) ? 'flexible' : 'payment',
+    ...(isMonthlyPlan(answers) ? [] : (['budget'] as const)),
+    'payment',
     'contact',
   ]
-}
-
-function readSource(searchParams: URLSearchParams) {
-  const source: Record<string, string> = {}
-  for (const key of sourceParams) {
-    const value = searchParams.get(key)
-    if (value) source[key] = value
-  }
-  if (document.referrer && new URL(document.referrer).origin !== window.location.origin) {
-    source.referrer = document.referrer
-  }
-  return source
 }
 
 function OptionGrid({
@@ -133,9 +123,7 @@ function StartProject() {
   const [searchParams] = useSearchParams()
   const [stageLocked] = useState(() => searchParams.get('intent') === 'idea')
   const [answers, setAnswers] = useState<Answers>(() => ({
-    service: findOption(serviceOptions, searchParams.get('service') ?? '')?.startingPrice
-      ? (searchParams.get('service') as string)
-      : '',
+    service: initialService(searchParams.get('service')),
     serviceOther: '',
     stage: stageLocked ? 'idea' : '',
     industry: '',
@@ -143,14 +131,12 @@ function StartProject() {
     timeline: '',
     budget: '',
     budgetUnsure: false,
-    openToFlexible: false,
-    businessContext: '',
     paymentPlan: '',
   }))
   const [step, setStep] = useState<StepId>(() =>
     answers.service ? getSteps(answers, stageLocked)[1] : 'service',
   )
-  const [source] = useState(() => readSource(searchParams))
+  const [source] = useState(getAttribution)
   const [status, setStatus] = useState<Status>('idle')
   const [errorMessage, setErrorMessage] = useState('')
   const [submitted, setSubmitted] = useState({ name: '', email: '' })
@@ -162,7 +148,6 @@ function StartProject() {
   const steps = getSteps(answers, stageLocked)
   const stepIndex = Math.max(steps.indexOf(step), 0)
   const isIdea = answers.stage === 'idea'
-  const belowMinimum = isBelowMinimum(answers)
   const firstName = submitted.name.split(/\s+/)[0]
   const serviceLabel =
     answers.service === 'something-else'
@@ -231,11 +216,8 @@ function StartProject() {
           description: answers.description,
           timeline: answers.timeline,
           budgetAmount: budgetAmount(answers),
-          budgetUnsure: answers.budgetUnsure,
-          belowMinimum,
-          openToFlexible: belowMinimum && answers.openToFlexible,
-          businessContext: belowMinimum ? answers.businessContext : '',
-          paymentPlan: belowMinimum ? '' : answers.paymentPlan,
+          budgetUnsure: isMonthlyPlan(answers) || answers.budgetUnsure,
+          paymentPlan: answers.paymentPlan,
           source,
         }),
       })
@@ -246,11 +228,13 @@ function StartProject() {
       hasNavigated.current = true
       setSubmitted({ name: contact.name?.trim() ?? '', email: contact.email?.trim() ?? '' })
       setStatus('sent')
+      const selectedService = findOption(serviceOptions, answers.service)
+      const leadValue = budgetAmount(answers) ?? selectedService?.leadValue
       trackLead('start_project', {
         service: answers.service,
+        value: leadValue,
         intent: isIdea ? 'idea' : 'project',
         timeline: answers.timeline,
-        below_minimum: belowMinimum,
       })
     } catch (submitError) {
       setErrorMessage(
@@ -447,52 +431,27 @@ function StartProject() {
           </>
         )
 
-      case 'flexible':
-        return (
-          <>
-            {heading(
-              'Thanks for being upfront',
-              isIdea
-                ? 'Every idea is different, and depending on yours, we can sometimes get creative with phased builds, payment plans, or partnership-style arrangements. Tell us a bit more so we can see what\'s possible.'
-                : 'Every organization is different, and depending on yours, we can sometimes get creative with phased builds, payment plans, or partnership-style arrangements. Tell us a bit more so we can see what\'s possible.',
-            )}
-            <label className="intake__checkbox">
-              <input
-                type="checkbox"
-                checked={answers.openToFlexible}
-                onChange={(event) => update({ openToFlexible: event.target.checked })}
-              />
-              <span>I'm open to discussing flexible arrangements</span>
-            </label>
-            <div className="contact-form__field">
-              <label htmlFor="intake-context" className="contact-form__label">
-                {isIdea ? 'Anything else about your idea?' : 'Anything else about your organization?'}{' '}
-                <span className="contact-form__optional">(optional)</span>
-              </label>
-              <textarea
-                id="intake-context"
-                className="contact-form__input contact-form__textarea"
-                placeholder={
-                  isIdea
-                    ? 'Who it\'s for, any progress so far, your plans for it'
-                    : 'How long you\'ve been running, who you serve, your growth plans'
-                }
-                value={answers.businessContext}
-                onChange={(event) => update({ businessContext: event.target.value })}
-                rows={5}
-                maxLength={5000}
-              />
-            </div>
-            {continueButton()}
-          </>
-        )
-
       case 'payment':
+        if (isMonthlyPlan(answers)) {
+          return (
+            <>
+              {heading(
+                'Which website plan sounds best?',
+                'Both plans include hosting, your domain, and updates. You can decide for sure after your free consultation.',
+              )}
+              <OptionGrid
+                options={websitePlanOptions}
+                selected={answers.paymentPlan}
+                onSelect={(id) => choose({ paymentPlan: id })}
+              />
+            </>
+          )
+        }
         return (
           <>
             {heading(
               'How would you prefer to pay?',
-              'Every project can be split into payments to keep your cash flow manageable.',
+              'We\'re flexible and happy to work out an arrangement that fits your situation.',
             )}
             <OptionGrid
               options={paymentPlanOptions}

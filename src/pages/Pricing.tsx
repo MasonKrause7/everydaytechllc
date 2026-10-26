@@ -12,7 +12,7 @@ import {
   FaRobot,
 } from 'react-icons/fa6'
 import Faq, { type FaqItem } from '../components/Faq'
-import { businessAddress, businessId } from '../data/contactInfo'
+import { businessAddress, businessId, contactPhone } from '../data/contactInfo'
 import usePageMeta from '../hooks/usePageMeta'
 import faqStructuredData from '../utils/faqStructuredData'
 import '../styles/pages/Page.css'
@@ -22,9 +22,8 @@ import '../styles/pages/Pricing.css'
 type Tier = {
   name: string
   service: string
-  min: number
-  max: number
-  openEnded?: boolean
+  // Monthly website plans show a price. Everything else is quoted individually.
+  monthly?: { price: number; terms: string }
   badge?: string
   featured?: boolean
   summary: string
@@ -44,54 +43,51 @@ const tierGroups: TierGroup[] = [
   {
     id: 'websites',
     eyebrow: 'Websites',
-    title: 'Custom website pricing',
-    intro: 'A static website is an affordable starting point for establishing a professional online presence. Every visitor sees the same content and there\'s no database behind the scenes, which keeps it simple, fast, and secure. If you want to update your own content or offer features like accounts, booking, or payments, a web app is the better fit, and any website we build can grow into one later.',
+    title: 'Website plans',
+    intro: 'Our website plans cover custom static websites. Every visitor sees the same content and there\'s no database behind the scenes, which keeps your site fast, simple, and secure. Instead of a large upfront bill, you pay a low monthly price that includes hosting, your domain, and updates. If you need features like accounts, booking, payments, or the ability to update content yourself, that\'s a web app, and any website we build can grow into one later.',
     tiers: [
       {
-        name: 'Single-page website',
-        service: 'single-page-website',
-        min: 400,
-        max: 600,
-        badge: 'Most affordable',
-        summary: 'Our most affordable option. A clean, professional landing page that grabs your customers\' attention and leaves a great first impression of your brand.',
+        name: '12-month plan',
+        service: 'website-plan',
+        monthly: { price: 65, terms: '$0 down · 12-month minimum' },
+        badge: 'Best value',
+        featured: true,
+        summary: 'Get your website live with nothing due up front. Once you complete your 12 monthly payments, the website is yours.',
         features: [
-          'One custom-designed page that matches your brand',
+          'Custom-designed static website that matches your brand',
+          'Hosting, domain, and SSL included',
           'Mobile-friendly, fast-loading layout',
-          'Clear calls to action like call, email, or get directions',
-          'Basic on-page SEO',
-          'Help setting up your domain and hosting',
+          'On-page SEO and Google Business Profile setup',
+          'Contact form and analytics setup',
+          'Content updates while you\'re on the plan',
+          'Full ownership of your website after 12 months',
         ],
-        bestFor: 'New businesses and anyone who needs a professional web presence fast.',
+        bestFor: 'Businesses that want a professional website without a large upfront cost.',
       },
       {
-        name: '3-page website',
-        service: '3-page-website',
-        min: 650,
-        max: 1000,
-        badge: 'Great for local visibility',
-        summary: 'A clean landing page that captures attention and makes a strong first impression, plus room for the content that helps you rank on Google.',
+        name: 'Month-to-month',
+        service: 'website-plan',
+        monthly: { price: 79, terms: '$250 setup · cancel anytime' },
+        summary: 'The same website and support with no long-term commitment. A one-time setup fee gets you started, and you can cancel whenever you need to.',
         features: [
-          'Up to 3 custom pages, such as Home, Services, and About',
-          'Contact form so customers can reach you directly',
-          'On-page SEO across every page',
-          'Mobile-friendly, fast-loading layout',
-          'Analytics setup to see how visitors find you',
+          'Everything included in the 12-month plan',
+          'No long-term contract',
+          'Cancel anytime',
+          'Full ownership of your website after 12 monthly payments',
         ],
-        bestFor: 'Established local businesses and organizations that want to be found on Google and turn visitors into customers.',
+        bestFor: 'Businesses that value flexibility over the lowest monthly rate.',
       },
     ],
   },
   {
     id: 'apps',
     eyebrow: 'Web & mobile apps',
-    title: 'Web app & mobile app development pricing',
-    intro: 'Apps add a database and real functionality to your organization, like user accounts, admin dashboards, and tools you can manage yourself. A self-service app costs a bit more up front, but it is more sustainable and cost-efficient in the long run because you are not paying someone every time something needs to change.',
+    title: 'Web app & mobile app development',
+    intro: 'Apps add a database and real functionality to your organization, like user accounts, admin dashboards, and tools you can manage yourself. Every app is different, so each one is quoted individually after a free consultation. A self-service app is also more sustainable in the long run, because you are not paying someone every time something needs to change.',
     tiers: [
       {
         name: 'Web app',
         service: 'web-app',
-        min: 1000,
-        max: 3000,
         badge: 'Best for most small businesses',
         featured: true,
         summary: 'A website with a database and functionality behind it. Manage your own content, view usage and analytics, and give customers features that go beyond a static page.',
@@ -107,8 +103,6 @@ const tierGroups: TierGroup[] = [
       {
         name: 'Mobile app',
         service: 'mobile-app',
-        min: 1500,
-        max: 5000,
         summary: 'Similar to a web app, but built for phones, which takes more time and specialization. Pricing depends on whether you need iOS, Android, or both, and on the app\'s complexity.',
         features: [
           'Custom app for iPhone, Android, or both',
@@ -122,9 +116,6 @@ const tierGroups: TierGroup[] = [
       {
         name: 'Full tech suite',
         service: 'full-tech-suite',
-        min: 3000,
-        max: 7000,
-        openEnded: true,
         badge: 'Best value at scale',
         summary: 'Most businesses with a mobile app should also have a web app, with both sharing the same data through an API. This is where we can truly optimize your customer experience across every platform.',
         features: [
@@ -141,14 +132,12 @@ const tierGroups: TierGroup[] = [
   {
     id: 'seo-ai',
     eyebrow: 'SEO & AI',
-    title: 'SEO & AI integration pricing',
-    intro: 'Grow what you\'ve already built. Search engine optimization helps more customers find you, and AI automation takes repetitive work off your plate so you can focus on what you do best.',
+    title: 'SEO & AI integration',
+    intro: 'Grow what you\'ve already built. Search engine optimization helps more customers find you, and AI automation takes repetitive work off your plate so you can focus on what you do best. Both are quoted individually based on your goals.',
     tiers: [
       {
         name: 'SEO (standalone)',
         service: 'seo',
-        min: 500,
-        max: 1000,
         summary: 'SEO is built into every new website and web app we create. For businesses with an existing website, we offer SEO as a standalone service with measurable results.',
         features: [
           'Technical SEO audit and fixes',
@@ -161,9 +150,7 @@ const tierGroups: TierGroup[] = [
       {
         name: 'AI integration',
         service: 'ai-integration',
-        min: 2000,
-        max: 10000,
-        summary: 'Pricing depends on the application and scale of the integration. AI features come with ongoing usage costs, so we keep our development pricing as lean as possible to help offset them.',
+        summary: 'Pricing depends on the application and scale of the integration. AI features come with ongoing usage costs, so we explain those up front and keep them in mind when we plan your project.',
         features: [
           'AI chat assistants that know your business',
           'Automated lead responses and follow-ups',
@@ -174,24 +161,6 @@ const tierGroups: TierGroup[] = [
         bestFor: 'Teams spending hours each week on repetitive questions, paperwork, or data entry.',
       },
     ],
-  },
-]
-
-const paymentPlans = [
-  {
-    count: '2',
-    title: 'Standard',
-    text: '50% when we finalize your contract and 50% when your project is delivered.',
-  },
-  {
-    count: '4',
-    title: 'Split',
-    text: 'Split your project into 4 payments over time to keep cash flow manageable.',
-  },
-  {
-    count: '8',
-    title: 'Extended',
-    text: 'Spread the cost across as many as 8 payments, so you can start growing now and pay as your new tools start earning their keep.',
   },
 ]
 
@@ -211,8 +180,7 @@ const growthSteps = [
 ]
 
 const upgradePaths = [
-  ['Single-page website', '3-page website'],
-  ['Website', 'Web app'],
+  ['Website plan', 'Web app'],
   ['Web app', 'Full tech suite'],
   ['Any website or app', 'SEO or AI integration'],
 ]
@@ -220,8 +188,8 @@ const upgradePaths = [
 const priceFactors: { icon: IconType; title: string; text: string }[] = [
   {
     icon: FaFileLines,
-    title: 'Pages and screens',
-    text: 'More pages or app screens means more design and development time.',
+    title: 'Screens and user flows',
+    text: 'More app screens and steps for your users means more design and development time.',
   },
   {
     icon: FaLayerGroup,
@@ -231,7 +199,7 @@ const priceFactors: { icon: IconType; title: string; text: string }[] = [
   {
     icon: FaMobileScreenButton,
     title: 'Platforms',
-    text: 'A website alone, iOS or Android, or all three working together from one shared API.',
+    text: 'A web app alone, iOS or Android, or all three working together from one shared API.',
   },
   {
     icon: FaPlug,
@@ -253,19 +221,35 @@ const priceFactors: { icon: IconType; title: string; text: string }[] = [
 const faqs: FaqItem[] = [
   {
     question: 'How much does a custom website cost?',
-    answer: 'A single-page custom website typically costs $400 to $600, and a 3-page website typically costs $650 to $1,000. Websites that need a database, user accounts, online booking, payments, or an admin dashboard fall into our web app tier, the best fit for most small businesses, which typically ranges from $1,000 to $3,000. Final pricing depends on the time and complexity involved, and we provide an exact quote after a free consultation.',
+    answer: 'Our website plans start at $65 a month with $0 down and a 12-month minimum. If you would rather not commit to 12 months, our month-to-month plan is $79 a month with a one-time $250 setup fee, and you can cancel anytime. Both plans include a custom static website, hosting, your domain, and updates. Within reason, the number of pages does not change the price. Websites that need a database, user accounts, online booking, payments, or an admin dashboard are web apps, which are quoted individually.',
   },
   {
-    question: 'How much does it cost to build a mobile app?',
-    answer: 'A mobile app typically costs $1,500 to $5,000, depending on whether you need iOS, Android, or both, and on how complex the app is. If you also need a web app that shares the same data, a full tech suite with an API, web app, and mobile apps typically ranges from $3,000 to $7,000 or more.',
+    question: 'When do I own my website?',
+    answer: 'Your website and its code become yours once you have made 12 monthly payments, on either plan.',
+  },
+  {
+    question: 'What happens after the first 12 months?',
+    answer: 'You only pay what your hosting actually costs, with nothing added on top. If you want us to keep handling regular updates, you can add an updates plan for $35 a month plus hosting. Or you can just pay for hosting and request updates as you need them, billed per job. You are also free to take your website to another host.',
+  },
+  {
+    question: 'What happens if I cancel my website plan early?',
+    answer: 'If you cancel before you have made 12 monthly payments, your website is taken offline. If you would like to keep it, you can buy it out by paying the rest of your first 12 months, and the website is yours. On the 12-month plan, you are committed to the full 12 months when you sign up.',
+  },
+  {
+    question: 'Can I buy my website outright instead of paying monthly?',
+    answer: 'Yes. If you would rather pay for your website up front and own it from day one, reach out and we will put together a one-time price for you.',
+  },
+  {
+    question: 'How much does a web app or mobile app cost?',
+    answer: 'Every app is quoted individually because the work depends on the features, platforms, and integrations you need. After a free consultation, we give you a clear quote in writing before any work begins. Call us or start a project to talk through your idea and your budget.',
   },
   {
     question: 'How much does it cost to add AI to my business?',
-    answer: 'AI integrations typically range from $2,000 to $10,000, depending on the application and the scale of the integration. AI features also have ongoing usage costs from AI providers, so we keep our development pricing as lean as possible and explain the expected ongoing costs up front.',
+    answer: 'It depends on the application and the scale of the integration, so AI work is quoted individually. AI features also have ongoing usage costs from AI providers, and we explain the expected ongoing costs up front so there are no surprises.',
   },
   {
     question: 'Do you offer payment plans?',
-    answer: 'Yes. Our standard arrangement is 50% when we finalize your contract and 50% when your project is delivered. We can also split your project into 4 payments, or as many as 8 payments over time.',
+    answer: 'Yes. Websites are paid monthly through our website plans, starting at $0 down. For apps and other projects, we can split the cost into payments over time, and we are open to working out an arrangement that fits your situation.',
   },
   {
     question: 'Can I start with one service and add more later?',
@@ -277,20 +261,20 @@ const faqs: FaqItem[] = [
   },
   {
     question: 'Is SEO included with a new website?',
-    answer: 'Yes. On-page SEO is built into every new website and web app we create. For businesses with an existing website, standalone SEO typically ranges from $500 to $1,000 and includes analytics from before and after our work so you can measure the impact.',
+    answer: 'Yes. On-page SEO is built into every new website and web app we create. For businesses with an existing website, we offer standalone SEO with analytics from before and after our work so you can measure the impact.',
   },
   {
     question: 'Are there ongoing costs after my project launches?',
-    answer: 'Depending on your project, ongoing costs can include your domain name, hosting, and AI usage. We walk you through all of them up front so there are no surprises. Continued support, where we monitor your analytics and handle updates for you, is optional.',
-  },
-  {
-    question: 'Are these prices final?',
-    answer: 'No. These ranges are meant to give you a general idea of what to expect. Every project is different, so final pricing is decided per project based on the time and complexity involved, and agreed on in writing before any work begins.',
+    answer: 'Website plans already include hosting, your domain, and updates. For apps and other projects, ongoing costs can include your domain name, hosting, and AI usage. We walk you through all of them up front so there are no surprises.',
   },
 ]
 
-const formatPrice = (tier: Tier) =>
-  `$${tier.min.toLocaleString('en-US')} – $${tier.max.toLocaleString('en-US')}${tier.openEnded ? '+' : ''}`
+const seller = {
+  '@type': 'ProfessionalService',
+  '@id': businessId,
+  name: 'Everyday Tech LLC',
+  address: businessAddress,
+}
 
 const structuredData = {
   '@context': 'https://schema.org',
@@ -301,19 +285,20 @@ const structuredData = {
       itemListElement: tierGroups.flatMap((group) =>
         group.tiers.map((tier) => ({
           '@type': 'Offer',
+          name: tier.monthly ? `Website ${tier.name.toLowerCase()}` : tier.name,
           itemOffered: { '@type': 'Service', name: tier.name, description: tier.summary },
-          priceSpecification: {
-            '@type': 'PriceSpecification',
-            priceCurrency: 'USD',
-            minPrice: tier.min,
-            ...(tier.openEnded ? {} : { maxPrice: tier.max }),
-          },
-          seller: {
-            '@type': 'ProfessionalService',
-            '@id': businessId,
-            name: 'Everyday Tech LLC',
-            address: businessAddress,
-          },
+          ...(tier.monthly
+            ? {
+                priceSpecification: {
+                  '@type': 'UnitPriceSpecification',
+                  priceCurrency: 'USD',
+                  price: tier.monthly.price,
+                  unitCode: 'MON',
+                  unitText: 'month',
+                },
+              }
+            : {}),
+          seller,
         })),
       ),
     },
@@ -324,7 +309,7 @@ const structuredData = {
 function Pricing() {
   usePageMeta(
     'Custom Website & App Pricing | West Michigan | Everyday Tech',
-    'How much does a custom website cost? See starting prices for websites, web apps, mobile apps, SEO, and AI integrations, plus flexible payment plans.',
+    'Custom website plans start at $65/month with $0 down. Web apps, mobile apps, SEO, and AI integrations are quoted individually. Call or reach out to talk through pricing.',
   )
 
   return (
@@ -342,17 +327,23 @@ function Pricing() {
             <span className="home_content__highlight">cost?</span>
           </h1>
           <p className="page__intro">
-            Most web developers make you book a call before they'll talk about price. We think you
-            deserve a straight answer. Here's what small businesses in Big Rapids, Grand Rapids,
-            across West Michigan, and nationwide can expect to invest in a custom website, app, SEO, or AI
-            integration with Everyday Tech.
+            Websites have simple monthly pricing with nothing due up front. Apps, SEO, and AI
+            integrations are custom work, so each one is quoted individually based on what your
+            business needs. We work with small businesses in Big Rapids, Grand Rapids, across West
+            Michigan, and nationwide.
           </p>
           <div className="pricing-note">
             <FaCircleInfo aria-hidden className="pricing-note__icon" />
             <p className="pricing-note__text">
-              These are ballpark ranges to give you a general idea. Every project is different, so
-              final pricing is decided per project based on the time and complexity involved, and
-              agreed on in writing before any work begins.
+              Have a budget in mind or a unique situation? Call{' '}
+              <a href={contactPhone.href} className="pricing-note__link">
+                {contactPhone.label}
+              </a>{' '}
+              or{' '}
+              <Link to="/start-project" className="pricing-note__link">
+                start a project
+              </Link>{' '}
+              to talk it through. We're happy to work with you to find something that fits.
             </p>
           </div>
           <nav className="pricing-jump" aria-label="Pricing categories">
@@ -365,7 +356,7 @@ function Pricing() {
               Grow as you go
             </Link>
             <Link to="#payment-plans" className="pricing-jump__link">
-              Payment plans
+              Flexible payments
             </Link>
           </nav>
         </div>
@@ -389,7 +380,20 @@ function Pricing() {
                 >
                   {tier.badge && <span className="pricing-card__badge">{tier.badge}</span>}
                   <h3 className="pricing-card__name">{tier.name}</h3>
-                  <p className="pricing-card__price">{formatPrice(tier)}</p>
+                  {tier.monthly ? (
+                    <>
+                      <p className="pricing-card__price">
+                        ${tier.monthly.price}
+                        <span className="pricing-card__price-unit">/month</span>
+                      </p>
+                      <p className="pricing-card__terms">{tier.monthly.terms}</p>
+                    </>
+                  ) : (
+                    <>
+                      <p className="pricing-card__price">Custom quote</p>
+                      <p className="pricing-card__terms">Priced individually · free consultation</p>
+                    </>
+                  )}
                   <p className="pricing-card__summary">{tier.summary}</p>
                   <ul className="pricing-card__features">
                     {tier.features.map((feature) => (
@@ -406,11 +410,30 @@ function Pricing() {
                     to={`/start-project?service=${tier.service}`}
                     className="hero__button hero__button--primary pricing-card__cta"
                   >
-                    Get a free quote
+                    {tier.monthly ? 'Get started' : 'Get a free quote'}
                   </Link>
                 </article>
               ))}
             </div>
+            {group.id === 'websites' && (
+              <div className="pricing-note pricing-ownership">
+                <FaCircleInfo aria-hidden className="pricing-note__icon" />
+                <div className="pricing-note__text">
+                  <p>
+                    <strong>How ownership works:</strong> your website and its code become yours
+                    once you've made 12 monthly payments on either plan. If you cancel before then,
+                    your website is taken offline, or you can buy it out by paying the rest of your
+                    first 12 months.
+                  </p>
+                  <p>
+                    <strong>After 12 months:</strong> you only pay what your hosting actually costs,
+                    with nothing added on top. Keep regular updates for $35/month plus hosting, or
+                    request updates as you need them. You're also free to move your website
+                    anywhere you like.
+                  </p>
+                </div>
+              </div>
+            )}
           </div>
         </section>
       ))}
@@ -453,24 +476,25 @@ function Pricing() {
 
       <section id="payment-plans" className="pricing-plans">
         <div className="home_content__inner">
-          <p className="home_content__eyebrow pricing-plans__eyebrow">Payment plans</p>
+          <p className="home_content__eyebrow pricing-plans__eyebrow">Flexible payments</p>
           <h2 className="home_content__title">
-            Flexible payments that fit your{' '}
-            <span className="home_content__highlight">cash flow</span>
+            Payment options that fit your{' '}
+            <span className="home_content__highlight">situation</span>
           </h2>
           <p className="pricing-plans__intro">
-            A great website or app should pay for itself, and you shouldn't have to drain your
-            savings to get started. Choose the payment schedule that works for your business.
+            Every business is in a different spot, and we're open to working with yours. If you'd
+            rather buy your website outright instead of paying monthly, we can do that. If you
+            want to spread an app project across several payments, or start small and build from
+            there, we can do that too. Reach out and we'll find an arrangement that gets you a
+            website or app that represents your business and helps it grow.
           </p>
-          <div className="pricing-plans__grid">
-            {paymentPlans.map((plan) => (
-              <div key={plan.count} className="pricing-plans__card">
-                <span className="pricing-plans__count">{plan.count}</span>
-                <span className="pricing-plans__unit">payments</span>
-                <h3 className="pricing-plans__title">{plan.title}</h3>
-                <p className="pricing-plans__text">{plan.text}</p>
-              </div>
-            ))}
+          <div className="hero__actions pricing-plans__actions">
+            <a href={contactPhone.href} className="hero__button hero__button--primary">
+              Call {contactPhone.label}
+            </a>
+            <Link to="/contact" className="hero__button hero__button--secondary">
+              Send a message
+            </Link>
           </div>
         </div>
       </section>
@@ -479,12 +503,12 @@ function Pricing() {
         <div className="home_content__inner">
           <p className="home_content__eyebrow">What affects the price</p>
           <h2 className="home_content__title">
-            Why every project is <span className="home_content__highlight">priced individually</span>
+            Why apps are <span className="home_content__highlight">priced individually</span>
           </h2>
           <p className="pricing-group__intro">
-            Two websites can look similar and still require very different amounts of work. These
-            are the biggest factors that move a project toward the low or high end of its range.
-            In your free consultation, we'll go through each of them and give you an exact quote.
+            Two apps can sound similar and still require very different amounts of work. These are
+            the biggest factors that shape the price of an app, SEO, or AI project. In your free
+            consultation, we'll go through each of them and give you a clear quote.
           </p>
           <div className="home_content__grid">
             {priceFactors.map(({ icon: Icon, title, text }) => (
@@ -513,15 +537,20 @@ function Pricing() {
       <section className="home_content__section home_content__section--cta">
         <div className="home_content__inner home_content__cta">
           <h2 className="home_content__title">
-            Get an exact <span className="home_content__highlight">quote</span> for free
+            Let's talk about your <span className="home_content__highlight">project</span>
           </h2>
           <p className="home_content__intro">
-            Tell us about your project and we'll put together a clear quote and payment plan. Meet
-            in person in West Michigan or over video anywhere in the US.
+            Tell us what you have in mind and we'll put together a price and payment plan that
+            works for you. Meet in person in West Michigan or over video anywhere in the US.
           </p>
-          <Link to="/start-project" className="hero__button hero__button--primary">
-            Start a project
-          </Link>
+          <div className="hero__actions">
+            <Link to="/start-project" className="hero__button hero__button--primary">
+              Start a project
+            </Link>
+            <a href={contactPhone.href} className="hero__button hero__button--secondary">
+              Call {contactPhone.label}
+            </a>
+          </div>
         </div>
       </section>
     </>

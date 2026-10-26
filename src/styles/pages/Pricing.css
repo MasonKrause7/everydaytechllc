@@ -128,6 +128,48 @@
   background-clip: text;
 }
 
+.pricing-card__price-unit {
+  margin-left: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.pricing-card__terms {
+  margin: 4px 0 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.pricing-ownership {
+  max-width: none;
+  margin-top: 32px;
+}
+
+.pricing-note__link {
+  font-weight: 600;
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.pricing-ownership .pricing-note__text p {
+  margin: 0;
+}
+
+.pricing-ownership .pricing-note__text p + p {
+  margin-top: 10px;
+}
+
+.pricing-plans__actions {
+  justify-content: flex-start;
+}
+
+.pricing-ownership strong {
+  color: var(--color-text);
+}
+
 .pricing-card__summary {
   margin: 12px 0 0;
   color: var(--color-text-muted);

@@ -4,7 +4,9 @@ import { BrowserRouter } from 'react-router'
 import './styles/index.css'
 import App from './App'
 import { initAnalytics } from './utils/analytics'
+import { captureAttribution } from './utils/attribution'
 
+captureAttribution()
 initAnalytics()
 
 createRoot(document.getElementById('root')!).render(

@@ -88,8 +88,6 @@ const tierGroups: TierGroup[] = [
       {
         name: 'Web app',
         service: 'web-app',
-        badge: 'Best for most small businesses',
-        featured: true,
         summary: 'A website with a database and functionality behind it. Manage your own content, view usage and analytics, and give customers features that go beyond a static page.',
         features: [
           'Everything included in our websites',
@@ -116,7 +114,6 @@ const tierGroups: TierGroup[] = [
       {
         name: 'Full tech suite',
         service: 'full-tech-suite',
-        badge: 'Best value at scale',
         summary: 'Most businesses with a mobile app should also have a web app, with both sharing the same data through an API. This is where we can truly optimize your customer experience across every platform.',
         features: [
           'API that powers all of your apps from one source of data',
@@ -380,18 +377,13 @@ function Pricing() {
                 >
                   {tier.badge && <span className="pricing-card__badge">{tier.badge}</span>}
                   <h3 className="pricing-card__name">{tier.name}</h3>
-                  {tier.monthly ? (
+                  {tier.monthly && (
                     <>
                       <p className="pricing-card__price">
                         ${tier.monthly.price}
                         <span className="pricing-card__price-unit">/month</span>
                       </p>
                       <p className="pricing-card__terms">{tier.monthly.terms}</p>
-                    </>
-                  ) : (
-                    <>
-                      <p className="pricing-card__price">Custom quote</p>
-                      <p className="pricing-card__terms">Priced individually · free consultation</p>
                     </>
                   )}
                   <p className="pricing-card__summary">{tier.summary}</p>
